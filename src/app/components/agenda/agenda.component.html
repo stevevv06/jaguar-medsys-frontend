@@ -2,46 +2,50 @@
 <div style="text-align:center;">
 
   <p-panel header="Title" [toggleable]="true">
-      <div class="big-padding">
-        <p-schedule [events]="appointments" 
-          [header]="headerConfig" 
-          [businessHours]="businessHours"
-          [scrollTime]="scrollTime"
-          [height]="480"
-          [editable]="true"
-          (onEventClick)="handleEventClick($event)"
-          [eventRender]="eventRender"
-          locale="es" defaultView="agendaWeek" nowIndicator="true" [allDaySlot]="false"></p-schedule>
+    <div class="big-padding">
+      <p-schedule [events]="appointments" [header]="headerConfig" [businessHours]="businessHours" [scrollTime]="scrollTime" [height]="480"
+        [editable]="true" (onEventClick)="handleEventClick($event)" [eventRender]="eventRender" locale="es" defaultView="agendaWeek"
+        nowIndicator="true" [allDaySlot]="false"></p-schedule>
     </div>
   </p-panel>
 
-  <p-dialog [(visible)]="display">
-      <p-header>
-        Edit Event  
-      </p-header>
-   
-      <div>        
-          <input placeholder="Paciente" type="text" size="30" pInputText [(ngModel)]="paciente"> 
+  <p-dialog [(visible)]="display"  [width]="420">
+    <p-header>
+      Edit Event
+    </p-header>
+    <app-appointment></app-appointment>
+    <!--form>
+      <div class="form-group">
+        <label class="col-md-4">Coin Name</label>
+        <input placeholder="Paciente" pInputText [(ngModel)]="paciente" type="text" class="form-control">
       </div>
-      <div>        
-        <input placeholder="Servicio" type="text" size="30" pInputText [(ngModel)]="servicio"> 
-    </div>
-      <div>
-        <p-calendar placeholder="Start Date" [(ngModel)]="startDate" [showTime]="true" 
-          appendTo="body" showIcon="true" [showOnFocus]="false" 
+
+      <div class="form-group">
+        <label class="col-md-4">Coin Price</label>
+        <input placeholder="Servicio" pInputText [(ngModel)]="servicio" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Coin Price</label>
+        <p-calendar placeholder="Start Date" [(ngModel)]="startDate" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
           dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
       </div>
-      <div>
-        <p-calendar placeholder="End Date" [(ngModel)]="endDate" [showTime]="true" 
-        appendTo="body" showIcon="true" [showOnFocus]="false"
-        dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
+
+      <div class="form-group">
+        <label class="col-md-4">Coin Price</label>
+        <p-calendar placeholder="End Date" [(ngModel)]="endDate" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
+          dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
       </div>
-      <p-footer>
-          <button type="button" pButton icon="fa-check" (click)="display=false" label="Ok"></button>
-          <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancel"></button>
-      </p-footer>
+
+      <div class="form-group">
+        <button type="button" pButton icon="fa-check" (click)="display=false" label="Ok"></button>
+        <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancel"></button>
+      </div>
+    </form-->
+
+    <p-footer>
+    </p-footer>
   </p-dialog>
 
-  
+
 </div>
-  

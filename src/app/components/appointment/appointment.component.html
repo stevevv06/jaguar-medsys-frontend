@@ -1,0 +1,62 @@
+<p-growl [value]="msgs" sticky="sticky"></p-growl>
+
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit(appointmentForm.value)">
+
+    <div class="ui-g ui-fluid">
+      
+        <div class="ui-g-3 ui-sm-12">
+          Paciente:
+        </div>
+        <div class="ui-g-9 ui-sm-12">
+          <input pInputText type="text" formControlName="patient" placeholder="Required" />
+        </div>
+        <div class="ui-g-9 ui-sm-12 ui-g-offset-3">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!appointmentForm.controls['patient'].valid&&appointmentForm.controls['patient'].dirty">
+            <i class="fa fa-close"></i> 
+            Pacient Name is required
+          </div>
+        </div>
+     
+        <div class="ui-g-3 ui-sm-12">
+          Servicio:
+        </div>
+        <div class="ui-g-9 ui-sm-12">
+          <input pInputText type="text" formControlName="service" placeholder="Required" />
+        </div>
+        <div class="ui-g-9 ui-sm-12 ui-g-offset-3">
+          <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!appointmentForm.controls['service'].valid&&appointmentForm.controls['service'].dirty">
+            <i class="fa fa-close"></i>
+            Servicio is required
+          </div>
+        </div>
+    
+        <div class="ui-g-3 ui-sm-12">
+          Inicio:
+        </div>
+        <div class="ui-g-9 ui-sm-12">
+          <p-calendar placeholder="Start Date" formControlName="start" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
+            dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
+        </div>
+        <div class="ui-g-9 ui-sm-12 ui-g-offset-3"></div>
+   
+        <div class="ui-g-3 ui-sm-12">
+          Fin:
+        </div>
+        <div class="ui-g-9 ui-sm-12">
+          <p-calendar placeholder="End Date" formControlName="end" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
+            dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
+        </div>
+        <div class="ui-g-9 ui-sm-12 ui-g-offset-3"></div>
+     
+        <div class="ui-g-3 ui-sm-12"></div>
+        <div class="ui-g-9 ui-sm-12">
+          <button pButton type="submit" label="Submit" [disabled]="!appointmentForm.valid"></button>
+        </div>
+        <div class="ui-g-9 ui-sm-12 ui-g-offset-3"></div>
+      
+      <div style="text-align:center;margin-top:20px" *ngIf="submitted">
+        Form Submitted
+        <br> {{diagnostic}}
+      </div>
+    </div>
+</form>
