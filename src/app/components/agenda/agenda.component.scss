@@ -1,0 +1,11 @@
+$color1:#aaa;
+$color2:#def;
+
+h1{
+    background-color: $color2;
+    color: $color1;
+}
+
+.big-padding{
+    padding: 10px;
+}

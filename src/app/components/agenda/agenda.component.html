@@ -1,0 +1,47 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center;">
+
+  <p-panel header="Title" [toggleable]="true">
+      <div class="big-padding">
+        <p-schedule [events]="appointments" 
+          [header]="headerConfig" 
+          [businessHours]="businessHours"
+          [scrollTime]="scrollTime"
+          [height]="480"
+          [editable]="true"
+          (onEventClick)="handleEventClick($event)"
+          [eventRender]="eventRender"
+          locale="es" defaultView="agendaWeek" nowIndicator="true" [allDaySlot]="false"></p-schedule>
+    </div>
+  </p-panel>
+
+  <p-dialog [(visible)]="display">
+      <p-header>
+        Edit Event  
+      </p-header>
+   
+      <div>        
+          <input placeholder="Paciente" type="text" size="30" pInputText [(ngModel)]="paciente"> 
+      </div>
+      <div>        
+        <input placeholder="Servicio" type="text" size="30" pInputText [(ngModel)]="servicio"> 
+    </div>
+      <div>
+        <p-calendar placeholder="Start Date" [(ngModel)]="startDate" [showTime]="true" 
+          appendTo="body" showIcon="true" [showOnFocus]="false" 
+          dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
+      </div>
+      <div>
+        <p-calendar placeholder="End Date" [(ngModel)]="endDate" [showTime]="true" 
+        appendTo="body" showIcon="true" [showOnFocus]="false"
+        dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
+      </div>
+      <p-footer>
+          <button type="button" pButton icon="fa-check" (click)="display=false" label="Ok"></button>
+          <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancel"></button>
+      </p-footer>
+  </p-dialog>
+
+  
+</div>
+  
