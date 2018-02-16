@@ -1,11 +1,14 @@
 import * as moment from 'moment';
 import * as jquery from 'jquery';
 import { Component, OnInit } from '@angular/core';
+import { EventService } from '../../services/event.service';
+
 
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.scss']
+  styleUrls: ['./agenda.component.scss'],
+  providers: [EventService]
 })
 export class AgendaComponent implements OnInit {
 
@@ -21,7 +24,7 @@ export class AgendaComponent implements OnInit {
   endDate: Date;
   test: string;
 
-  constructor() { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit() {
     this.headerConfig = {
@@ -43,11 +46,10 @@ export class AgendaComponent implements OnInit {
       }
     ];
 
+    this.appointments = this.eventService.getEvents();
+    console.log(this.appointments);
+    /*
     this.appointments = [
-      /*{
-          "title": "All Day Event",
-          "start": "2018-02-01"
-      },*/
       {
         "title": "Luis Lopez",
         "start": "2018-02-07T08:00",
@@ -87,6 +89,7 @@ export class AgendaComponent implements OnInit {
         "color": "red"
       },
     ];
+    */
   }
 
   handleEventClick(e) {

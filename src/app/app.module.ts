@@ -17,6 +17,7 @@ import {GrowlModule} from 'primeng/components/growl/growl';
 import { AppComponent } from './app.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
+//import {EventService} from "./services/event.service"
 
 
 @NgModule({
