@@ -1,10 +1,11 @@
 import 'jquery';
 import 'moment';
 import 'fullcalendar';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 import {PanelModule} from 'primeng/components/panel/panel';
 import {ScheduleModule} from 'primeng/components/schedule/schedule';
 import {DialogModule} from 'primeng/components/dialog/dialog';
@@ -13,10 +14,12 @@ import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {GrowlModule} from 'primeng/components/growl/growl';
+import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 
-import { AppComponent } from './app.component';
-import { AgendaComponent } from './components/agenda/agenda.component';
-import { AppointmentComponent } from './components/appointment/appointment.component';
+import {AppComponent} from './app.component';
+import {AgendaComponent} from './components/agenda/agenda.component';
+import {AppointmentComponent} from './components/appointment/appointment.component';
+
 //import {EventService} from "./services/event.service"
 
 
@@ -30,6 +33,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     PanelModule,
     ScheduleModule,    
@@ -38,7 +42,8 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     TooltipModule,
     InputTextModule,
     CalendarModule,
-    GrowlModule
+    GrowlModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

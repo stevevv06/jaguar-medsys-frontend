@@ -1,0 +1,14 @@
+{
+    "data": [
+        {
+            "id":"1",
+            "clinic":"Sucursal 1",
+            "address":"yuiyui ui",
+            "phone1":"78787878",
+            "phone2":"22242224",
+            "company_id":"1",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        }
+    ]
+}

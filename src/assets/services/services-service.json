@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "id":"1",
+            "service":"Ortodoncia",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        },
+        {
+            "id":"2",
+            "service":"Limpieza",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        },
+        {
+            "id":"3",
+            "service":"Extraccion",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        }
+    ]
+}

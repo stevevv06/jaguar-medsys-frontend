@@ -1,0 +1,20 @@
+{
+    "data": [
+        {
+            "id":"1",
+            "full_name":"Dr 1",
+            "specialities":"Ortodoncia",
+            "color":"blue",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        },
+        {
+            "id":"2",
+            "full_name":"Dr 2",
+            "specialities":"Cirujia Maxi",
+            "color":"red",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        }
+    ]
+}

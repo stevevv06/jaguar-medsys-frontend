@@ -1,0 +1,54 @@
+{
+    "data": [
+        {
+            "id":"1",
+            "full_name":"Pedro Perez",
+            "gender_id":"m",
+            "birth_date":"10/01/1985",
+            "address":"abc abc abc",
+            "phone1":"77782525",
+            "phone2":"",
+            "email":"pp@gmail.com",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        },
+        {
+            "id":"2",
+            "full_name":"Luis Lopez",
+            "gender_id":"m",
+            "birth_date":"01/03/1992",
+            "address":"def def def",
+            "phone1":"78653434",
+            "phone2":"",
+            "email":"ll@gmail.com",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        },
+        {
+            "id":"3",
+            "full_name":"Maria Martinez",
+            "gender_id":"f",
+            "birth_date":"01/03/1995",
+            "address":"zzz ddd www",
+            "phone1":"79456789",
+            "phone2":"",
+            "email":"mm@gmail.com",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        },
+        {
+            "id":"4",
+            "full_name":"Carla Canales",
+            "gender_id":"f",
+            "birth_date":"01/03/1983",
+            "address":"poi poi poi",
+            "phone1":"76126534",
+            "phone2":"",
+            "email":"cc@gmail.com",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        }
+    ]
+}
+
+            

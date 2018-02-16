@@ -21,7 +21,9 @@
           Servicio:
         </div>
         <div class="ui-g-9 ui-sm-12">
-          <input pInputText type="text" formControlName="service" placeholder="Required" />
+          <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
+          <p-dropdown [options]="servicesList" formControlName="service" optionLabel="service" dataKey="id" lazy="true"  
+          placeholder="Seleccione Servicio" [autoWidth]="false"></p-dropdown>
         </div>
         <div class="ui-g-9 ui-sm-12 ui-g-offset-3">
           <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!appointmentForm.controls['service'].valid&&appointmentForm.controls['service'].dirty">

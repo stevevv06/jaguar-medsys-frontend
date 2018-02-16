@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "id":"f",
+            "gender":"Femenino",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        },
+        {
+            "id":"m",
+            "gender":"Masculino",
+            "created":"2018-02-01T08:00",
+            "modified":""
+        }
+    ]
+}
