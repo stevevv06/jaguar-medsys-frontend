@@ -15,6 +15,7 @@ import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {GrowlModule} from 'primeng/components/growl/growl';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
+import {MessageModule} from 'primeng/components/message/message';
 
 import {AppComponent} from './app.component';
 import {AgendaComponent} from './components/agenda/agenda.component';
@@ -43,7 +44,8 @@ import {AppointmentComponent} from './components/appointment/appointment.compone
     InputTextModule,
     CalendarModule,
     GrowlModule,
-    DropdownModule
+    DropdownModule,
+    MessageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

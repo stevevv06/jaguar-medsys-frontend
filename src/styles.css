@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+.form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+  .form-group .form-control {
+    display: block;
+    width: 100%;
+  }
+  
+  .custom_form{
+    margin-bottom: 15px;
+  }
+  .custom_form div label{
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
