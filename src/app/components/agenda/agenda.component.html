@@ -1,21 +1,29 @@
 <div>
-  <p-panel header="Title" [toggleable]="true">
-    <p-header>
-        <p-button label="Agregar"  (onClick)="addAppointment()"></p-button>
-    </p-header>
-
-    <div class="big-padding">
-      <p-schedule [events]="appointments" [header]="headerConfig" [businessHours]="businessHours" [scrollTime]="scrollTime" [height]="480"
-        [editable]="true" (onEventClick)="editAppointment($event)" [eventRender]="eventRender" locale="es" defaultView="agendaWeek"
-        nowIndicator="true" [allDaySlot]="false"></p-schedule>
+  <p-toolbar>
+    <div class="ui-toolbar-group-left">
+      <p-button label="Agregar" (onClick)="addAppointment()"></p-button>
     </div>
-  </p-panel>
+    <div class="ui-toolbar-group-right">
+      <button pButton type="button" icon="fa-refresh" class="ui-button-success"></button>
+    </div>
+  </p-toolbar>
+  
+  <div class="separator"></div>
 
-  <p-dialog [(visible)]="display"  [width]="720">
+  <div>
+    <p-schedule [events]="appointments" [header]="headerConfig" [businessHours]="businessHours" [scrollTime]="scrollTime" [height]="480"
+      [editable]="true" 
+      (onEventClick)="editAppointment($event)" 
+      (onDayClick)="addAppointmentOnDate($event)"
+      locale="es" defaultView="agendaWeek"
+      nowIndicator="true" [allDaySlot]="false"></p-schedule>
+  </div>
+
+  <p-dialog [(visible)]="dialogVisible" [width]="720" [appendTo]="body">
     <p-header>
       Cita
     </p-header>
-    <app-appointment [appointment]="selectedAppointment"></app-appointment>
-    
+    <app-appointment [appointment]="selectedAppointment" (onCancel)="showDialog(false)"></app-appointment>
+
   </p-dialog>
 </div>

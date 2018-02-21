@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 //import * as jquery from 'jquery';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Message, SelectItem } from 'primeng/components/common/api';
 import { ServicesService } from '../../services/services.service';
@@ -57,13 +57,16 @@ export class AppointmentComponent implements OnInit {
 
   @Input()
   set appointment(appointment: any) {
-    this._appointment = appointment;
-    
-      this.updateFormGroup();
-    
+    this._appointment = appointment;    
+    this.updateFormGroup();    
   }
   get appointment(): any { return this._appointment; }
 
+  @Output() onCancel = new EventEmitter<void>();
+  
+  cancel(){
+    this.onCancel.emit();
+  }
   updateFormGroup() {
     if(this._appointment != null && this._appointment != undefined){
       this.appointmentForm.get('patient').setValue(this.appointment.patient_id);

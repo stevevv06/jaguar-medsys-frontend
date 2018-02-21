@@ -18,7 +18,7 @@ export class AgendaComponent implements OnInit {
   headerConfig: any;
   scrollTime: any;
   businessHours: any;
-  display: boolean = false;  
+  dialogVisible: boolean = false;
 
   constructor(
     private appointmentsService: AppointmentsService) { }
@@ -44,15 +44,17 @@ export class AgendaComponent implements OnInit {
     ];
 
     this.appointmentsService.getAppointments().then(data => this.appointments = data);
-   
   }
 
+  showDialog(visible: boolean){
+    this.dialogVisible = visible;
+  }
   editAppointment(e) {
     //e.calEvent = Selected event
     //e.jsEvent = Browser click event
     //e.view = Current view object
     this.selectedAppointment = e.calEvent.appointment;
-    this.display = true;    
+    this.showDialog(true);
     /*
     this.test = e.calEvent.title + ' ' + e.calEvent.start + ' ' + e.calEvent.end + ' ' + moment(e.calEvent.start).format() + ' ' + moment.utc(e.calEvent.end).toDate();
     this.paciente = e.calEvent.title;
@@ -62,17 +64,44 @@ export class AgendaComponent implements OnInit {
     */
   }
 
-  addAppointment():void{
+  addAppointment(): void {
     this.selectedAppointment = null;
-    this.display = true;    
+    this.showDialog(true);
   }
 
-  updateAppointment():void{
-    
+  addAppointmentOnDate(e): void {
+    //e.date = Selected date slot
+    //e.jsEvent = Browser click event
+    //e.view = Current view object
+    let mo: moment.Moment = moment(e.date);
+    let sStartDate: string = moment(e.date).format();
+    let sEndDate: string = moment(e.date).add(30, 'minutes').format(); 
+    if (!mo.hasTime()){
+      sStartDate += "T08:00";
+      sEndDate += "T08:30";
+    }
+  
+    this.selectedAppointment = {
+      "id": "",
+      "patient_id": "",
+      "doctor_id": "",
+      "service_id": "",
+      "clinic_id": "",
+      "start": sStartDate,
+      "end": sEndDate,
+      "created": "",
+      "modified": ""
+    };
+
+    this.dialogVisible = true;
   }
 
-  deleteAppointment():void{
-    
+  updateAppointment(): void {
+
+  }
+
+  deleteAppointment(): void {
+
   }
 
 

@@ -1,28 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
-.form-group {
-    margin-bottom: 15px;
-  }
-  .form-group label {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: 700;
-  }
-  .form-group .form-control {
-    display: block;
-    width: 100%;
-  }
-  
-  .custom_form{
-    /*margin-bottom: 15px;*/
-  }
-  .custom_form div label{
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: 700;
-  }
+/*Fix for firefox*/
+.ui-splitbutton-menubutton.ui-button-icon-only .ui-button-text {
+  overflow: visible;
+}
+
+.separator{
+  display: block;
+  height: 10px;
+}
+
+td.fc-today{
+  background-color: #91cde044;  
+  border-color: #5bc0de;
+}
