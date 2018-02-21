@@ -51,8 +51,8 @@ export class AgendaComponent implements OnInit {
     //e.calEvent = Selected event
     //e.jsEvent = Browser click event
     //e.view = Current view object
-    this.display = true;
     this.selectedAppointment = e.calEvent.appointment;
+    this.display = true;    
     /*
     this.test = e.calEvent.title + ' ' + e.calEvent.start + ' ' + e.calEvent.end + ' ' + moment(e.calEvent.start).format() + ' ' + moment.utc(e.calEvent.end).toDate();
     this.paciente = e.calEvent.title;
@@ -63,8 +63,8 @@ export class AgendaComponent implements OnInit {
   }
 
   addAppointment():void{
-    this.display = true;
     this.selectedAppointment = null;
+    this.display = true;    
   }
 
   updateAppointment():void{

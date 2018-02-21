@@ -58,19 +58,23 @@ export class AppointmentComponent implements OnInit {
   @Input()
   set appointment(appointment: any) {
     this._appointment = appointment;
-    if(this._appointment != null && this._appointment != undefined){
+    
       this.updateFormGroup();
-    }
+    
   }
   get appointment(): any { return this._appointment; }
 
   updateFormGroup() {
-    this.appointmentForm.get('patient').setValue(this.appointment.patient_id);
-    this.appointmentForm.get('service').setValue(this.appointment.service_id);
-    this.appointmentForm.get('clinic').setValue(this.appointment.clinic_id);
-    this.appointmentForm.get('doctor').setValue(this.appointment.doctor_id);
-    this.appointmentForm.get('start').setValue(new Date(moment(this.appointment.start).format()));
-    this.appointmentForm.get('end').setValue(new Date(moment(this.appointment.end).format()));
+    if(this._appointment != null && this._appointment != undefined){
+      this.appointmentForm.get('patient').setValue(this.appointment.patient_id);
+      this.appointmentForm.get('service').setValue(this.appointment.service_id);
+      this.appointmentForm.get('clinic').setValue(this.appointment.clinic_id);
+      this.appointmentForm.get('doctor').setValue(this.appointment.doctor_id);
+      this.appointmentForm.get('start').setValue(new Date(moment(this.appointment.start).format()));
+      this.appointmentForm.get('end').setValue(new Date(moment(this.appointment.end).format()));
+    }else{
+      this.appointmentForm.reset();
+    }
   }
 
   onSubmit(value: string) {
