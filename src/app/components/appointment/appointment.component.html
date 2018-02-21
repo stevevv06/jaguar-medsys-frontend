@@ -1,13 +1,15 @@
 <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit(appointmentForm.value)">
-  <div class="ui-g ui-fluid custom_form">
+  <div class="ui-g ui-fluid">
 
     <div class="ui-g-12">
-      <label class="ui-g-12">Paciente:</label>
-
-      <input pInputText type="text" formControlName="patient" placeholder="Required" class="ui-g-12" />
-
-      <div class="ui-g-12">        
-        <p-message severity="error" text="Pacient Name is required" *ngIf="!appointmentForm.controls['patient'].valid&&appointmentForm.controls['patient'].dirty"></p-message>
+      <label>Paciente:</label>
+      <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
+      <div class="ui-g-12">
+        <p-dropdown [options]="patientsList" formControlName="patient" lazy="true" placeholder="Seleccione Paciente"
+          [autoWidth]="false"></p-dropdown>
+      </div>
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['patient'].valid&&appointmentForm.controls['patient'].dirty">
+        <p-message severity="error" text="Paciente is required" ></p-message>
       </div>
     </div>
 
@@ -15,41 +17,65 @@
       <label>Servicio:</label>
       <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
       <div class="ui-g-12">
-        <p-dropdown [options]="servicesList" formControlName="service" optionLabel="service" dataKey="id" lazy="true" placeholder="Seleccione Servicio"
+        <p-dropdown [options]="servicesList" formControlName="service" lazy="true" placeholder="Seleccione Servicio"
           [autoWidth]="false"></p-dropdown>
       </div>
-      <div class="ui-g-12">
-          <p-message severity="error" text="Pacient Name is required" *ngIf="!appointmentForm.controls['service'].valid&&appointmentForm.controls['service'].dirty"></p-message>        
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['service'].valid&&appointmentForm.controls['service'].dirty">
+        <p-message severity="error" text="Pacient Name is required" ></p-message>
       </div>
     </div>
 
-    <div  class="ui-g-12">
+    <div class="ui-g-6">
+      <label>Clinica:</label>
+      <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
+      <div class="ui-g-12">
+        <p-dropdown [options]="clinicsList" formControlName="clinic" lazy="true" placeholder="Seleccione Clinica"
+          [autoWidth]="false"></p-dropdown>
+      </div>
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['clinic'].valid&&appointmentForm.controls['clinic'].dirty">
+        <p-message severity="error" text="Clinica is required" ></p-message>
+      </div>
+    </div>
+
+    <div class="ui-g-6">
+      <label>Doctor:</label>
+      <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
+      <div class="ui-g-12">
+        <p-dropdown [options]="doctorsList" formControlName="doctor" lazy="true" placeholder="Seleccione Doctor"
+          [autoWidth]="false"></p-dropdown>
+      </div>
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['doctor'].valid&&appointmentForm.controls['doctor'].dirty">
+        <p-message severity="error" text="Doctor is required" ></p-message>
+      </div>
+    </div>
+
+    <div class="ui-g-6">
       <label>Inicio:</label>
       <div class="ui-g-12">
-      <p-calendar placeholder="Start Date" formControlName="start" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
-        dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
+        <p-calendar placeholder="Start Date" formControlName="start" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
+          dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
       </div>
-      <div class="ui-g-12">
-          <p-message severity="error" text="Pacient Name is required" *ngIf="!appointmentForm.controls['start'].valid&&appointmentForm.controls['start'].dirty"></p-message>        
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['start'].valid&&appointmentForm.controls['start'].dirty">
+        <p-message severity="error" text="Pacient Name is required" ></p-message>
       </div>
     </div>
 
-    <div class="ui-g-12">
-      <label class="ui-g-12">Fin:</label>
+    <div class="ui-g-6">
+      <label>Fin:</label>
       <div class="ui-g-12">
-      <p-calendar placeholder="End Date" formControlName="end" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
-        dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
-</div>
-        <div class="ui-g-12">
-            <p-message severity="error" text="Pacient Name is required" *ngIf="!appointmentForm.controls['end'].valid&&appointmentForm.controls['end'].dirty"></p-message>        
-        </div>
+        <p-calendar placeholder="End Date" formControlName="end" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
+          dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
+      </div>
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['end'].valid&&appointmentForm.controls['end'].dirty">
+        <p-message severity="error" text="Pacient Name is required" ></p-message>
+      </div>
     </div>
 
     <div class="ui-g-12">
       <button pButton type="submit" label="Submit" [disabled]="false"></button>
     </div>
 
-    <div style="text-align:center;margin-top:20px" *ngIf="submitted">
+    <div *ngIf="submitted">
       Form Submitted
       <br> {{diagnostic}}
     </div>

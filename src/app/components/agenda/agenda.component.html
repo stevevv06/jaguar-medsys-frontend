@@ -1,50 +1,21 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center;">
-
+<div>
   <p-panel header="Title" [toggleable]="true">
+    <p-header>
+        <p-button label="Agregar"  (onClick)="addAppointment()"></p-button>
+    </p-header>
+
     <div class="big-padding">
       <p-schedule [events]="appointments" [header]="headerConfig" [businessHours]="businessHours" [scrollTime]="scrollTime" [height]="480"
-        [editable]="true" (onEventClick)="handleEventClick($event)" [eventRender]="eventRender" locale="es" defaultView="agendaWeek"
+        [editable]="true" (onEventClick)="editAppointment($event)" [eventRender]="eventRender" locale="es" defaultView="agendaWeek"
         nowIndicator="true" [allDaySlot]="false"></p-schedule>
     </div>
   </p-panel>
-  <app-appointment></app-appointment>
 
   <p-dialog [(visible)]="display"  [width]="420">
     <p-header>
-      Edit Event
+      Cita
     </p-header>
-    <app-appointment></app-appointment>
-    <!--form>
-      <div class="form-group">
-        <label class="col-md-4">Coin Name</label>
-        <input placeholder="Paciente" pInputText [(ngModel)]="paciente" type="text" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4">Coin Price</label>
-        <input placeholder="Servicio" pInputText [(ngModel)]="servicio" type="text" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4">Coin Price</label>
-        <p-calendar placeholder="Start Date" [(ngModel)]="startDate" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
-          dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4">Coin Price</label>
-        <p-calendar placeholder="End Date" [(ngModel)]="endDate" [showTime]="true" appendTo="body" showIcon="true" [showOnFocus]="false"
-          dateFormat="dd/mm/yy" hourFormat="12"></p-calendar>
-      </div>
-
-      <div class="form-group">
-        <button type="button" pButton icon="fa-check" (click)="display=false" label="Ok"></button>
-        <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancel"></button>
-      </div>
-    </form-->
-
+    <app-appointment [appointment]="selectedAppointment"></app-appointment>
+    
   </p-dialog>
-
-
 </div>

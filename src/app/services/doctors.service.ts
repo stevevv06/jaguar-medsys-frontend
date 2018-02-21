@@ -3,24 +3,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 
 @Injectable()
-export class ServicesService {
+export class DoctorsService {
 
   constructor(private http: HttpClient) { }
 
-  getServices(): Promise<any[]> {
-    return this.http.get<any>('assets/services/services-service.json')
+  getDoctors(): Promise<any[]> {
+    return this.http.get<any>('assets/services/doctors-service.json')
       .toPromise()
       .then(res => <any[]>res.data);
-    //.then(data => { return data; });
   }
 
-  getServicesPairList(): Promise<any[]> {
-    return this.getServices()
+  getDoctorsPairList(): Promise<any[]> {
+    return this.getDoctors()
       .then(data => {
         let ret: any[] = [];
         data.forEach(e => {
           ret.push({
-            "label": e.service,
+            "label": e.full_name,
             "value": e.id
           })
         });
