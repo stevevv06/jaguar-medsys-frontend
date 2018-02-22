@@ -1,1 +1,23 @@
-<app-agenda></app-agenda>
+<mat-toolbar color="primary" class="app-header">
+    <button label="T" (click)="snav.toggle()"></button>
+    <h1>Responsive App</h1>
+</mat-toolbar>
+
+<mat-sidenav-container class="app-container">
+    <mat-sidenav #snav [mode]="'side'" [opened]="true" [fixedInViewport]="false" class="app-sidenav">
+        <mat-nav-list>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content >
+        <app-agenda></app-agenda>        
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-toolbar color="accent" class="app-footer">Footer</mat-toolbar>
+

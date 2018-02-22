@@ -1,3 +1,4 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 /*Fix for firefox*/
 .ui-splitbutton-menubutton.ui-button-icon-only .ui-button-text {
   overflow: visible;
