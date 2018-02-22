@@ -17,6 +17,7 @@ export class AgendaComponent implements OnInit {
   selectedAppointment: any = null;
   headerConfig: any;
   scrollTime: any;
+  options: any;
   businessHours: any;
   dialogVisible: boolean = false;
 
@@ -30,6 +31,9 @@ export class AgendaComponent implements OnInit {
       right: 'month,agendaWeek,agendaDay'
     };
     this.scrollTime = '08:00';
+    this.options = {
+      height: '250'
+    };
     this.businessHours = [
       {
         dow: [1, 2, 3, 4, 5], // Monday - friday

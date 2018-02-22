@@ -10,9 +10,10 @@
   
   <div class="separator"></div>
 
-  <div style="position: absolute;top: 50px;bottom: 0px;left: 0px;right: 0px;border: 1px solid red;overflow: ">
-    <p-schedule [events]="appointments" [header]="headerConfig" [businessHours]="businessHours" 
-      [scrollTime]="scrollTime" [aspectRatio]="2.5"
+  <div style="position: absolute;top: 50px;bottom: 0px;left: 0px;right: 0px;border: 1px solid red;overflow: visible;">
+    <p-schedule [events]="appointments" [header]="headerConfig" 
+      [businessHours]="businessHours" 
+      [scrollTime]="scrollTime" [height]="auto"
       [editable]="true" 
       (onEventClick)="editAppointment($event)" 
       (onDayClick)="addAppointmentOnDate($event)"
