@@ -1,21 +1,17 @@
 <mat-toolbar color="primary" class="app-header">
-    <button label="T" (click)="snav.toggle()"></button>
+    <button mat-icon-button (click)="snav.toggle()">
+            <span class="fa fa-fw fa-bars"></span>
+    </button>
     <h1>Responsive App</h1>
 </mat-toolbar>
 
 <mat-sidenav-container class="app-container">
     <mat-sidenav #snav [mode]="'side'" [opened]="true" [fixedInViewport]="false" class="app-sidenav">
-        <mat-nav-list>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ul>
-        </mat-nav-list>
+        <app-sidenavmenu></app-sidenavmenu>
     </mat-sidenav>
 
-    <mat-sidenav-content >
-        <app-agenda></app-agenda>        
+    <mat-sidenav-content id="app-main-container">        
+        <app-agenda style="position: absolute; top:0px; bottom: 0px;left: 0px;right: 0px;"></app-agenda>        
     </mat-sidenav-content>
 </mat-sidenav-container>
 

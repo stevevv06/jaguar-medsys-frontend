@@ -17,11 +17,12 @@ import {GrowlModule} from 'primeng/components/growl/growl';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import {MessageModule} from 'primeng/components/message/message';
 import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
-import {MatDividerModule,MatIconModule,MatListModule,MatMenuModule,MatRippleModule,MatSidenavModule,MatToolbarModule} from '@angular/material';
+import {MatButtonModule,MatDividerModule,MatIconModule,MatListModule,MatMenuModule,MatRippleModule,MatSidenavModule,MatToolbarModule} from '@angular/material';
 
 import {AppComponent} from './app.component';
 import {AgendaComponent} from './components/agenda/agenda.component';
 import {AppointmentComponent} from './components/appointment/appointment.component';
+import { SidenavmenuComponent } from './components/sidenavmenu/sidenavmenu.component';
 
 //import {EventService} from "./services/event.service"
 
@@ -30,7 +31,8 @@ import {AppointmentComponent} from './components/appointment/appointment.compone
   declarations: [
     AppComponent,
     AgendaComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    SidenavmenuComponent
   ],
   imports: [
     BrowserModule,
@@ -49,16 +51,12 @@ import {AppointmentComponent} from './components/appointment/appointment.compone
     DropdownModule,
     MessageModule,
     ToolbarModule,
+    MatButtonModule,
     MatIconModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
   ],
-  exports: [
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule],  
   providers: [],
   bootstrap: [AppComponent]
 })

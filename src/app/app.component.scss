@@ -1,16 +1,17 @@
 .app-container {
     position: absolute;
-    top: 60px;
+    top: 45px;
     bottom: 30px;
     left: 0;
     right: 0;
+    padding: 10px
   }
   
   .app-sidenav {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
+    width: 100px;
   }
   
   .app-header {
@@ -18,6 +19,7 @@
     top: 0;
     left: 0;
     right: 0;
+    height: 45px;
   }
   
   .app-footer {
@@ -26,4 +28,12 @@
     left: 0;
     right: 0;
     height: 30px;
+  }
+
+  #app-main-container{
+    position: relative;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;    
   }

@@ -67,6 +67,23 @@
                 "created":"",
                 "modified":""
             }
+        },
+        {
+            "title":"Carla Canales",
+            "start":"2018-02-20T08:30",
+            "end":"2018-02-20T09:30",
+            "color":"green",
+            "appointment":{
+                "id": "4",
+                "patient_id": "4",
+                "doctor_id": "1",
+                "service_id": "1",
+                "clinic_id": "1",
+                "start":"2018-02-20T08:30",
+                "end":"2018-02-20T09:30",
+                "created":"",
+                "modified":""
+            }
         }
     ]
 }

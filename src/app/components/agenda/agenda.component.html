@@ -1,27 +1,28 @@
-<div style="position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;border: 1px solid green;">
+<div style="position: relative; top:0px; bottom: 0px;left: 0px;right: 0px; height: 100%">
   <p-toolbar>
     <div class="ui-toolbar-group-left">
-      <p-button label="Agregar" (onClick)="addAppointment()"></p-button>
+      <p-button label="Agregar" icon="fa fa-fw fa-plus" (onClick)="addAppointment()"></p-button>
     </div>
     <div class="ui-toolbar-group-right">
-      <button pButton type="button" icon="fa-refresh" class="ui-button-success"></button>
+      <button pButton type="button" icon="fa fa-fw fa-refresh" class="ui-button-success"></button>
     </div>
   </p-toolbar>
   
-  <div class="separator"></div>
-
-  <div style="position: absolute;top: 50px;bottom: 0px;left: 0px;right: 0px;border: 1px solid red;overflow: visible;">
-    <p-schedule [events]="appointments" [header]="headerConfig" 
+  <div style="position: absolute; top:50px ; bottom: 0px; left: 0px; right: 0px;">
+    <div style="height: 100%;">
+    <p-schedule id="schedule_agenda" [events]="appointments" [header]="headerConfig" 
       [businessHours]="businessHours" 
-      [scrollTime]="scrollTime" [height]="auto"
-      [editable]="true" 
+      [minTime]="minTime" [maxTime]="maxTime"
+      [scrollTime]="scrollTime" ([height])="heightp"      
       (onEventClick)="editAppointment($event)" 
       (onDayClick)="addAppointmentOnDate($event)"
+      [editable]="false" 
       locale="es" defaultView="agendaWeek"
-      nowIndicator="true" [allDaySlot]="false"></p-schedule>
+      [nowIndicator]="true" [allDaySlot]="false"></p-schedule>
+    </div>
   </div>
 
-  <p-dialog [(visible)]="dialogVisible" [width]="720" [appendTo]="body">
+  <p-dialog [(visible)]="dialogVisible" width="720" appendTo="body">
     <p-header>
       Cita
     </p-header>
