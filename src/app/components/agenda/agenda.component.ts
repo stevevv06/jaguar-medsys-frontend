@@ -2,6 +2,7 @@ import * as moment from 'moment';
 import * as jquery from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { AppointmentsService } from '../../services/appointments.service';
+import {Appointment} from '../../models/appointment';
 
 
 @Component({
@@ -59,7 +60,7 @@ export class AgendaComponent implements OnInit {
     //e.calEvent = Selected event
     //e.jsEvent = Browser click event
     //e.view = Current view object
-    this.selectedAppointment = e.calEvent.appointment;
+    this.selectedAppointment = new Appointment(e.calEvent.appointment);
     this.showDialog(true);
     /*
     this.test = e.calEvent.title + ' ' + e.calEvent.start + ' ' + e.calEvent.end + ' ' + moment(e.calEvent.start).format() + ' ' + moment.utc(e.calEvent.end).toDate();
@@ -87,7 +88,7 @@ export class AgendaComponent implements OnInit {
       sEndDate += "T08:30";
     }
   
-    this.selectedAppointment = {
+    this.selectedAppointment = new Appointment({
       "id": "",
       "patient_id": "",
       "doctor_id": "",
@@ -97,7 +98,7 @@ export class AgendaComponent implements OnInit {
       "end": sEndDate,
       "created": "",
       "modified": ""
-    };
+    });
 
     this.dialogVisible = true;
   }

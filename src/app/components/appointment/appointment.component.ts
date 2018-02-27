@@ -7,6 +7,7 @@ import { ServicesService } from '../../services/services.service';
 import { ClinicsService } from '../../services/clinics.service';
 import { DoctorsService } from '../../services/doctors.service';
 import { PatientsService } from '../../services/patients.service';
+import {Appointment} from '../../models/appointment';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { PatientsService } from '../../services/patients.service';
   ]
 })
 export class AppointmentComponent implements OnInit {
-  private _appointment: any;
+  private _appointment: Appointment;
   msgs: Message[] = [];
   appointmentForm: FormGroup;
   submitted: boolean;
@@ -42,10 +43,10 @@ export class AppointmentComponent implements OnInit {
     this.patientsService.getPatientsPairList().then(data => this.patientsList = data);
 
     this.appointmentForm = this.fb.group({
-      'patient': new FormControl('', Validators.required),
-      'service': new FormControl('', Validators.required),
-      'clinic': new FormControl('', Validators.required),
-      'doctor': new FormControl('', Validators.required),
+      'patient_id': new FormControl('', Validators.required),
+      'service_id': new FormControl('', Validators.required),
+      'clinic_id': new FormControl('', Validators.required),
+      'doctor_id': new FormControl('', Validators.required),
       'start': new FormControl('', Validators.required),
       'end': new FormControl('', Validators.required)
     });
@@ -56,11 +57,11 @@ export class AppointmentComponent implements OnInit {
   }
 
   @Input()
-  set appointment(appointment: any) {
+  set appointment(appointment: Appointment) {
     this._appointment = appointment;    
     this.updateFormGroup();    
   }
-  get appointment(): any { return this._appointment; }
+  get appointment(): Appointment { return this._appointment; }
 
   @Output() onCancel = new EventEmitter<void>();
   
@@ -69,10 +70,10 @@ export class AppointmentComponent implements OnInit {
   }
   updateFormGroup() {
     if(this._appointment != null && this._appointment != undefined){
-      this.appointmentForm.get('patient').setValue(this.appointment.patient_id);
-      this.appointmentForm.get('service').setValue(this.appointment.service_id);
-      this.appointmentForm.get('clinic').setValue(this.appointment.clinic_id);
-      this.appointmentForm.get('doctor').setValue(this.appointment.doctor_id);
+      this.appointmentForm.get('patient_id').setValue(this.appointment.patient_id);
+      this.appointmentForm.get('service_id').setValue(this.appointment.service_id);
+      this.appointmentForm.get('clinic_id').setValue(this.appointment.clinic_id);
+      this.appointmentForm.get('doctor_id').setValue(this.appointment.doctor_id);
       this.appointmentForm.get('start').setValue(new Date(moment(this.appointment.start).format()));
       this.appointmentForm.get('end').setValue(new Date(moment(this.appointment.end).format()));
     }else{

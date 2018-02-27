@@ -5,9 +5,9 @@
       <label>Paciente:</label>
       <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
       <div class="ui-g-12">
-        <p-dropdown [options]="patientsList" formControlName="patient" lazy="true" placeholder="Seleccione Paciente" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="patientsList" formControlName="patient_id" lazy="true" placeholder="Seleccione Paciente" [autoWidth]="false"></p-dropdown>
       </div>
-      <div class="ui-g-12" *ngIf="!appointmentForm.controls['patient'].valid&&appointmentForm.controls['patient'].dirty">
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['patient_id'].valid&&appointmentForm.controls['patient_id'].dirty">
         <p-message severity="error" text="Paciente is required"></p-message>
       </div>
     </div>
@@ -16,9 +16,9 @@
       <label>Servicio:</label>
       <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
       <div class="ui-g-12">
-        <p-dropdown [options]="servicesList" formControlName="service" lazy="true" placeholder="Seleccione Servicio" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="servicesList" formControlName="service_id" lazy="true" placeholder="Seleccione Servicio" [autoWidth]="false"></p-dropdown>
       </div>
-      <div class="ui-g-12" *ngIf="!appointmentForm.controls['service'].valid&&appointmentForm.controls['service'].dirty">
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['service_id'].valid&&appointmentForm.controls['service_id'].dirty">
         <p-message severity="error" text="Pacient Name is required"></p-message>
       </div>
     </div>
@@ -27,9 +27,9 @@
       <label>Clinica:</label>
       <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
       <div class="ui-g-12">
-        <p-dropdown [options]="clinicsList" formControlName="clinic" lazy="true" placeholder="Seleccione Clinica" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="clinicsList" formControlName="clinic_id" lazy="true" placeholder="Seleccione Clinica" [autoWidth]="false"></p-dropdown>
       </div>
-      <div class="ui-g-12" *ngIf="!appointmentForm.controls['clinic'].valid&&appointmentForm.controls['clinic'].dirty">
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['clinic_id'].valid&&appointmentForm.controls['clinic_id'].dirty">
         <p-message severity="error" text="Clinica is required"></p-message>
       </div>
     </div>
@@ -38,9 +38,9 @@
       <label>Doctor:</label>
       <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
       <div class="ui-g-12">
-        <p-dropdown [options]="doctorsList" formControlName="doctor" lazy="true" placeholder="Seleccione Doctor" [autoWidth]="false"></p-dropdown>
+        <p-dropdown [options]="doctorsList" formControlName="doctor_id" lazy="true" placeholder="Seleccione Doctor" [autoWidth]="false"></p-dropdown>
       </div>
-      <div class="ui-g-12" *ngIf="!appointmentForm.controls['doctor'].valid&&appointmentForm.controls['doctor'].dirty">
+      <div class="ui-g-12" *ngIf="!appointmentForm.controls['doctor_id'].valid&&appointmentForm.controls['doctor_id'].dirty">
         <p-message severity="error" text="Doctor is required"></p-message>
       </div>
     </div>
