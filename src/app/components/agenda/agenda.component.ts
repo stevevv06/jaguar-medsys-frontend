@@ -3,6 +3,7 @@ import * as jquery from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { AppointmentsService } from '../../services/appointments.service';
 import {Appointment} from '../../models/appointment';
+import {ScheduleEvent} from '../../models/schedule-event';
 
 
 @Component({
@@ -14,8 +15,10 @@ import {Appointment} from '../../models/appointment';
   ]
 })
 export class AgendaComponent implements OnInit {
-  appointments: any[];
-  selectedAppointment: any = null;
+  appointments: ScheduleEvent[];
+  selectedAppointment: Appointment = null;
+  scheduleViewStart: any;
+  scheduleViewEnd: any;
   headerConfig: any;
   scrollTime: string;
   minTime: string;
@@ -48,19 +51,32 @@ export class AgendaComponent implements OnInit {
         start: '08:00', // 8am
         end: '12:00' // 12pm
       }
-    ];
+    ];    
+  }
 
+  loadEvents(params): void{
+    if(params != null){
+      this.scheduleViewStart = params.view.start;
+      this.scheduleViewEnd = params.view.end;
+    }
+    //TODO: should filter by date time range
     this.appointmentsService.getAppointments().then(data => this.appointments = data);
+    console.log("Events reloaded with range " + this.scheduleViewStart.format() + " - " + this.scheduleViewEnd.format());
+  }
+
+  clearEvents(): void{
+    this.appointments = [];
   }
 
   showDialog(visible: boolean){
     this.dialogVisible = visible;
   }
+
   editAppointment(e) {
     //e.calEvent = Selected event
     //e.jsEvent = Browser click event
     //e.view = Current view object
-    this.selectedAppointment = new Appointment(e.calEvent.appointment);
+    this.selectedAppointment = e.calEvent.appointment;
     this.showDialog(true);
     /*
     this.test = e.calEvent.title + ' ' + e.calEvent.start + ' ' + e.calEvent.end + ' ' + moment(e.calEvent.start).format() + ' ' + moment.utc(e.calEvent.end).toDate();
@@ -88,27 +104,51 @@ export class AgendaComponent implements OnInit {
       sEndDate += "T08:30";
     }
   
-    this.selectedAppointment = new Appointment({
-      "id": "",
-      "patient_id": "",
-      "doctor_id": "",
-      "service_id": "",
-      "clinic_id": "",
-      "start": sStartDate,
-      "end": sEndDate,
-      "created": "",
-      "modified": ""
+    this.selectedAppointment = new Appointment({     
+        "id": "",
+        "patient_id": "",
+        "doctor_id": "",
+        "service_id": "",
+        "clinic_id": "",
+        "start": sStartDate,
+        "end": sEndDate,
+        "created": "",
+        "modified": ""      
     });
 
     this.dialogVisible = true;
   }
 
-  updateAppointment(): void {
-
+  saveAppointment(): void {
+    //  console.log("Appointment saved " + JSON.stringify(this.selectedAppointment));
+    if(this.selectedAppointment.isNew){
+      console.log("Its new!")
+      this.appointments.push(new ScheduleEvent(
+        {
+        "title": "New!",
+        "start":this.selectedAppointment.start,
+        "end": this.selectedAppointment.end,
+        "appointment":this.selectedAppointment
+        })
+      );
+      this.appointmentsService.createAppointment(this.selectedAppointment);      
+    }
+    else{
+      let index : number = this.appointments.findIndex(x => x.appointment.id === this.selectedAppointment.id);
+      //console.log("Editing id: " +this.selectedAppointment.id + ", index: " + index);
+      //console.log(JSON.stringify(this.appointments));
+      this.appointments[index].appointment = this.selectedAppointment;
+      this.appointmentsService.updateAppointment(this.selectedAppointment);
+      //console.log(JSON.stringify(this.appointments));
+    }
+    this.showDialog(false);
+    this.loadEvents(null);
   }
 
   deleteAppointment(): void {
-
+    this.appointmentsService.deleteAppointment(this.selectedAppointment);
+    this.showDialog(false);
+    this.loadEvents(null);
   }
 
 

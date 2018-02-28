@@ -23,6 +23,7 @@ import {Appointment} from '../../models/appointment';
 })
 export class AppointmentComponent implements OnInit {
   private _appointment: Appointment;
+  optionDelete: boolean = false;
   msgs: Message[] = [];
   appointmentForm: FormGroup;
   submitted: boolean;
@@ -40,7 +41,7 @@ export class AppointmentComponent implements OnInit {
     this.servicesService.getServicesPairList().then(data => this.servicesList = data);
     this.clinicsService.getClinicsPairList().then(data => this.clinicsList = data);
     this.doctorsService.getDoctorsPairList().then(data => this.doctorsList = data);
-    this.patientsService.getPatientsPairList().then(data => this.patientsList = data);
+    //this.patientsService.getPatientsPairList().then(data => this.patientsList = data);
 
     this.appointmentForm = this.fb.group({
       'patient_id': new FormControl('', Validators.required),
@@ -53,31 +54,46 @@ export class AppointmentComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   @Input()
   set appointment(appointment: Appointment) {
-    this._appointment = appointment;    
+    this._appointment = appointment;
     this.updateFormGroup();    
   }
   get appointment(): Appointment { return this._appointment; }
 
   @Output() onCancel = new EventEmitter<void>();
-  
   cancel(){
     this.onCancel.emit();
   }
+  
+  @Output() onSave = new EventEmitter<Appointment>();
+  save(){
+    this.appointment.patient_id = this.appointmentForm.get('patient_id').value;
+    this.appointment.service_id = this.appointmentForm.get('service_id').value;
+    this.appointment.clinic_id = this.appointmentForm.get('clinic_id').value;
+    this.appointment.doctor_id = this.appointmentForm.get('doctor_id').value;
+    this.appointment.start = this.appointmentForm.get('start').value;
+    this.appointment.end = this.appointmentForm.get('end').value;
+    this.onSave.emit(this.appointment);
+  }
+
+  @Output() onDelete = new EventEmitter<Appointment>();
+  delete(): void{
+    this.onDelete.emit();
+  }
+
   updateFormGroup() {
-    if(this._appointment != null && this._appointment != undefined){
+    this.appointmentForm.reset();
+    if(this.appointment != null && this.appointment != undefined){
+      this.optionDelete = !this.appointment.isNew;
       this.appointmentForm.get('patient_id').setValue(this.appointment.patient_id);
       this.appointmentForm.get('service_id').setValue(this.appointment.service_id);
       this.appointmentForm.get('clinic_id').setValue(this.appointment.clinic_id);
       this.appointmentForm.get('doctor_id').setValue(this.appointment.doctor_id);
       this.appointmentForm.get('start').setValue(new Date(moment(this.appointment.start).format()));
       this.appointmentForm.get('end').setValue(new Date(moment(this.appointment.end).format()));
-    }else{
-      this.appointmentForm.reset();
     }
   }
 
@@ -89,4 +105,7 @@ export class AppointmentComponent implements OnInit {
 
   get diagnostic() { return JSON.stringify(this.appointmentForm.value); }
 
+  searchPatients(event){
+      this.patientsService.queryPatients(event.query).then(data => this.patientsList = data);
+  }
 }

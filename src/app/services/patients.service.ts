@@ -27,4 +27,17 @@ export class PatientsService {
       });
   }
 
+  queryPatients(query: string): Promise<any[]> {
+    console.log("queryPatientsPairList with query: " + query);
+    return this.getPatients()
+      .then(data => {
+        let ret: any[] = [];
+        ret = data.filter(e => {
+         return e.full_name.indexOf(query) >= 0;
+        });
+        console.log(JSON.stringify(ret));
+        return ret;
+      });      
+  }
+
 }

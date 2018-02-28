@@ -22,4 +22,12 @@ export class Appointment {
         this.created = appointment.created;
         this.modified = appointment.modified;
     };
+
+    public isNew() : boolean{
+        let ret: boolean = true;
+        if(this.id != null && this.id.length > 0){
+            ret = false;
+        }
+        return ret;
+    };
 }

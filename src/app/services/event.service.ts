@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Event } from '../models/event';
+import { ScheduleEvent } from '../models/schedule-event';
 
 @Injectable()
 export class EventService {
@@ -7,7 +7,7 @@ export class EventService {
 
   constructor() { }
 
-  getEvents():Event[]{
+  getEvents():ScheduleEvent[]{
     if(this.events == null){
       this.events = [
         {"id":"001","title":"Luis Lopez","start":"2018-02-15T08:00","end":"2018-02-07T09:00","color":""},

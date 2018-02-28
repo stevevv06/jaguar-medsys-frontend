@@ -3,14 +3,18 @@
     <div class="ui-toolbar-group-left">
       <p-button label="Agregar" icon="fa fa-fw fa-plus" (onClick)="addAppointment()"></p-button>
     </div>
-    <div class="ui-toolbar-group-right">
-      <button pButton type="button" icon="fa fa-fw fa-refresh" class="ui-button-success"></button>
+    <div class="ui-toolbar-group-right">      
+      <button pButton type="button" (click)="loadEvents(null)"
+        icon="fa fa-fw fa-refresh" class="ui-button-success"></button>
     </div>
   </p-toolbar>
   
   <div style="position: absolute; top:50px ; bottom: 0px; left: 0px; right: 0px;">
     <div style="height: 100%;">
-    <p-schedule id="schedule_agenda" [events]="appointments" [header]="headerConfig" 
+    <p-schedule id="schedule_agenda" 
+      [events]="appointments" 
+      (onViewRender)="loadEvents($event)"
+      [header]="headerConfig" 
       [businessHours]="businessHours" 
       [minTime]="minTime" [maxTime]="maxTime"
       [scrollTime]="scrollTime" ([height])="heightp"      
@@ -26,7 +30,10 @@
     <p-header>
       Cita
     </p-header>
-    <app-appointment [appointment]="selectedAppointment" (onCancel)="showDialog(false)"></app-appointment>
+    <app-appointment [(appointment)]="selectedAppointment" 
+      (onSave)="saveAppointment()" 
+      (onCancel)="showDialog(false)"
+      (onDelete)="deleteAppointment()"></app-appointment>
 
   </p-dialog>
 </div>
