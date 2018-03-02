@@ -4,14 +4,15 @@
     bottom: 30px;
     left: 0;
     right: 0;
-    padding: 10px
+    
   }
   
   .app-sidenav {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
+    width: 150px;
+    padding: 10px;
   }
   
   .app-header {
@@ -20,6 +21,7 @@
     left: 0;
     right: 0;
     height: 45px;
+    z-index: 2;
   }
   
   .app-footer {
@@ -36,4 +38,5 @@
     bottom: 0px;
     left: 0px;
     right: 0px;    
+    padding: 10px;
   }

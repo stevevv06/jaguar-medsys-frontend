@@ -88,7 +88,17 @@ export class AgendaComponent implements OnInit {
   }
 
   addAppointment(): void {
-    this.selectedAppointment = null;
+    this.selectedAppointment = new Appointment({     
+      "id": "",
+      "patient_id": "",
+      "doctor_id": "",
+      "service_id": "",
+      "clinic_id": "",
+      "start": "",
+      "end": "",
+      "created": "",
+      "modified": ""      
+  });
     this.showDialog(true);
   }
 

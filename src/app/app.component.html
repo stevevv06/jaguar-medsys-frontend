@@ -6,12 +6,15 @@
 </mat-toolbar>
 
 <mat-sidenav-container class="app-container">
-    <mat-sidenav #snav [mode]="'side'" [opened]="true" [fixedInViewport]="false" class="app-sidenav">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
+        [opened]="mobileQuery.matches ? 'false' : 'true'" 
+        [fixedInViewport]="mobileQuery.matches" 
+        class="app-sidenav">
         <app-sidenavmenu></app-sidenavmenu>
     </mat-sidenav>
 
     <mat-sidenav-content id="app-main-container">        
-        <app-agenda style="position: absolute; top:0px; bottom: 0px;left: 0px;right: 0px;"></app-agenda>        
+        <app-agenda ></app-agenda>        
     </mat-sidenav-content>
 </mat-sidenav-container>
 

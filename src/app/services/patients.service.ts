@@ -29,11 +29,12 @@ export class PatientsService {
 
   queryPatients(query: string): Promise<any[]> {
     console.log("queryPatientsPairList with query: " + query);
+    let querylc: string = query.toLowerCase();
     return this.getPatients()
       .then(data => {
         let ret: any[] = [];
         ret = data.filter(e => {
-         return e.full_name.indexOf(query) >= 0;
+         return e.full_name.toLowerCase().indexOf(querylc) >= 0;
         });
         console.log(JSON.stringify(ret));
         return ret;

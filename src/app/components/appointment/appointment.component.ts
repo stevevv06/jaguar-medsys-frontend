@@ -70,6 +70,7 @@ export class AppointmentComponent implements OnInit {
   
   @Output() onSave = new EventEmitter<Appointment>();
   save(){
+    //console.log(JSON.stringify(this.appointmentForm.controls));
     this.appointment.patient_id = this.appointmentForm.get('patient_id').value;
     this.appointment.service_id = this.appointmentForm.get('service_id').value;
     this.appointment.clinic_id = this.appointmentForm.get('clinic_id').value;

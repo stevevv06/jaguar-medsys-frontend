@@ -23,7 +23,7 @@ import {MatButtonModule,MatDividerModule,MatIconModule,MatListModule,MatMenuModu
 import {AppComponent} from './app.component';
 import {AgendaComponent} from './components/agenda/agenda.component';
 import {AppointmentComponent} from './components/appointment/appointment.component';
-import { SidenavmenuComponent } from './components/sidenavmenu/sidenavmenu.component';
+import {SidenavmenuComponent} from './components/sidenavmenu/sidenavmenu.component';
 
 //import {EventService} from "./services/event.service"
 

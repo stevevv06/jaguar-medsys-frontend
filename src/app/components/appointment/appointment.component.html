@@ -8,8 +8,19 @@
         <!--p-dropdown [options]="patientsList" formControlName="patient_id" lazy="true" placeholder="Seleccione Paciente" [autoWidth]="false"></p-dropdown-->
         <p-autoComplete formControlName="patient_id" 
           [suggestions]="patientsList"
-          dataKey="id" field="full_name"
-          (completeMethod)="searchPatients($event)" [dropdown]="false"></p-autoComplete>
+          field="full_name" dataKey="id"
+          (completeMethod)="searchPatients($event)"
+          placeholder="Seleccione Paciente"
+          emptyMessage="No se encuentra paciente"
+          [forceSelection]="true" [dropdown]="false">
+          <ng-template let-appointment pTemplate="item">    
+            <div class="ui-g">
+              <div class="ui-g-1 ui-sm-2"><span class="fa fa-fw fa-user"></span></div> 
+              <div class="ui-g-7 ui-sm-10">{{appointment.full_name}}</div>
+              <div class="ui-g-4 ui-sm-10 ui-sm-offset-2">{{appointment.phone1}}{{appointment.phone2 != '' ? ', '+appointment.phone2 : ''}}</div>                         
+            </div>
+        </ng-template>
+        </p-autoComplete>
       </div>
       <div class="ui-g-12" *ngIf="!appointmentForm.controls['patient_id'].valid&&appointmentForm.controls['patient_id'].dirty">
         <p-message severity="error" text="Paciente is required"></p-message>
@@ -18,7 +29,6 @@
 
     <div class="ui-g-12">
       <label>Servicio:</label>
-      <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
       <div class="ui-g-12">
         <p-dropdown [options]="servicesList" formControlName="service_id" lazy="true" placeholder="Seleccione Servicio" [autoWidth]="false"></p-dropdown>
       </div>
@@ -29,7 +39,6 @@
 
     <div class="ui-g-6 ui-sm-12">
       <label>Clinica:</label>
-      <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
       <div class="ui-g-12">
         <p-dropdown [options]="clinicsList" formControlName="clinic_id" lazy="true" placeholder="Seleccione Clinica" [autoWidth]="false"></p-dropdown>
       </div>
@@ -40,7 +49,6 @@
 
     <div class="ui-g-6 ui-sm-12">
       <label>Doctor:</label>
-      <!--input pInputText type="text" formControlName="service" placeholder="Required" /-->
       <div class="ui-g-12">
         <p-dropdown [options]="doctorsList" formControlName="doctor_id" lazy="true" placeholder="Seleccione Doctor" [autoWidth]="false"></p-dropdown>
       </div>
@@ -72,16 +80,16 @@
     </div>
 
     <div class="ui-g-12">
-      <div class="{{optionDelete?'ui-g-6':'ui-g-8'}}">
+      <div class="{{optionDelete?'ui-g-6':'ui-g-8'}} ui-sm-12">
         <button pButton type="submit" label="Guardar" (click)="save()" icon="fa fa-fw fa-save" [disabled]="false"></button>
       </div>
-      <div class="ui-g-3" *ngIf="optionDelete">
-          <button pButton type="button" label="Borrar" (click)="delete()" icon="fa fa-fw fa-trash" 
-           class="ui-button-danger"></button>
-        </div>
-      <div class="{{optionDelete?'ui-g-3':'ui-g-4'}}">
+      <div class="ui-g-3 ui-sm-12" *ngIf="optionDelete">
+        <button pButton type="button" label="Borrar" (click)="delete()" icon="fa fa-fw fa-trash" 
+          class="ui-button-danger"></button>
+      </div>
+      <div class="{{optionDelete?'ui-g-3':'ui-g-4'}} ui-sm-12">
         <button pButton type="button" label="Cancel" (click)="cancel()" icon="fa fa-fw fa-close"
-        class="ui-button-secondary"></button>
+          class="ui-button-secondary"></button>
       </div>
     </div>
 
