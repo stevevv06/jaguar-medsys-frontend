@@ -7,6 +7,19 @@ export class PatientsService {
 
   constructor(private http: HttpClient) { }
 
+  getPatient(id: string): Promise<any> {
+    console.log("getPatient id " + id)
+    return this.getPatients()
+      .then(data => {
+        let ret: any = null;
+        ret = data.filter(e => {
+         return e.id === id;
+        });        
+        console.log(JSON.stringify(ret));
+        return ret[0];
+      });
+  }
+
   getPatients(): Promise<any[]> {
     return this.http.get<any>('assets/services/patients-service.json')
       .toPromise()

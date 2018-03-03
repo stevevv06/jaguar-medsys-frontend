@@ -4,7 +4,7 @@ import 'fullcalendar';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {PanelModule} from 'primeng/components/panel/panel';
 import {ScheduleModule} from 'primeng/components/schedule/schedule';
@@ -38,7 +38,7 @@ import {SidenavmenuComponent} from './components/sidenavmenu/sidenavmenu.compone
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
+    
     HttpClientModule,
     ReactiveFormsModule,
     PanelModule,

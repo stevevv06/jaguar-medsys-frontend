@@ -31,7 +31,7 @@ export class AppointmentComponent implements OnInit {
   servicesList: SelectItem[];
   clinicsList: SelectItem[];
   doctorsList: SelectItem[];
-  patientsList: SelectItem[];
+  patientsList: any[];
 
   constructor(private fb: FormBuilder,
     private servicesService: ServicesService,
@@ -71,7 +71,7 @@ export class AppointmentComponent implements OnInit {
   @Output() onSave = new EventEmitter<Appointment>();
   save(){
     //console.log(JSON.stringify(this.appointmentForm.controls));
-    this.appointment.patient_id = this.appointmentForm.get('patient_id').value;
+    this.appointment.patient_id = this.appointmentForm.get('patient_id').value.id;
     this.appointment.service_id = this.appointmentForm.get('service_id').value;
     this.appointment.clinic_id = this.appointmentForm.get('clinic_id').value;
     this.appointment.doctor_id = this.appointmentForm.get('doctor_id').value;
@@ -89,12 +89,19 @@ export class AppointmentComponent implements OnInit {
     this.appointmentForm.reset();
     if(this.appointment != null && this.appointment != undefined){
       this.optionDelete = !this.appointment.isNew;
-      this.appointmentForm.get('patient_id').setValue(this.appointment.patient_id);
-      this.appointmentForm.get('service_id').setValue(this.appointment.service_id);
-      this.appointmentForm.get('clinic_id').setValue(this.appointment.clinic_id);
-      this.appointmentForm.get('doctor_id').setValue(this.appointment.doctor_id);
-      this.appointmentForm.get('start').setValue(new Date(moment(this.appointment.start).format()));
-      this.appointmentForm.get('end').setValue(new Date(moment(this.appointment.end).format()));
+      if(this.appointment.patient_id !=null && this.appointment.patient_id != ""){        
+        this.patientsService.getPatient(this.appointment.patient_id).then(data => 
+          this.appointmentForm.get('patient_id').setValue(data)
+        );        
+      }else{
+        this.appointmentForm.get('patient_id').setValue(this.appointment.patient_id);
+      }
+      this.appointmentForm.controls['service_id'].setValue(this.appointment.service_id);
+      this.appointmentForm.controls['clinic_id'].setValue(this.appointment.clinic_id);
+      this.appointmentForm.controls['doctor_id'].setValue(this.appointment.doctor_id);
+      this.appointmentForm.controls['start'].setValue(new Date(moment(this.appointment.start).format()));
+      this.appointmentForm.controls['end'].setValue(new Date(moment(this.appointment.end).format()));
+      console.warn('too late :(');
     }
   }
 
@@ -108,5 +115,6 @@ export class AppointmentComponent implements OnInit {
 
   searchPatients(event){
       this.patientsService.queryPatients(event.query).then(data => this.patientsList = data);
+      console.log(this.patientsList);
   }
 }
