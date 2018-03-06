@@ -20,12 +20,13 @@ import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
 import {MatButtonModule,MatDividerModule,MatIconModule,MatListModule,MatMenuModule,MatRippleModule,MatSidenavModule,MatToolbarModule} from '@angular/material';
 
+import {AppRoutingModule} from './modules/app-routing/app-routing.module';
 import {AppComponent} from './app.component';
 import {AgendaComponent} from './components/agenda/agenda.component';
 import {AppointmentComponent} from './components/appointment/appointment.component';
 import {SidenavmenuComponent} from './components/sidenavmenu/sidenavmenu.component';
 
-//import {EventService} from "./services/event.service"
+
 
 
 @NgModule({
@@ -35,10 +36,10 @@ import {SidenavmenuComponent} from './components/sidenavmenu/sidenavmenu.compone
     AppointmentComponent,
     SidenavmenuComponent
   ],
-  imports: [
+  imports: [    
+    AppRoutingModule,
     BrowserModule,
-    BrowserAnimationsModule,
-    
+    BrowserAnimationsModule,    
     HttpClientModule,
     ReactiveFormsModule,
     PanelModule,
