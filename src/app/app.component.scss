@@ -1,3 +1,12 @@
+/* colors:*/
+$backAccent:#F2C811;
+$back1:#333333;
+$back2:#212121;
+$primary:#01B8AA;
+$secondary:#5AD1C8;
+$primaryDark:#374649;
+$primaryAccent:#FD625E;
+
 .app-container {
     position: absolute;
     top: 45px;
@@ -16,6 +25,8 @@
   }
   
   .app-header {
+    background-color: $back1;
+    color: $backAccent;
     position: fixed;
     top: 0;
     left: 0;
@@ -25,6 +36,8 @@
   }
   
   .app-footer {
+    background-color: $back2;
+    color: $backAccent;
     position: fixed;
     bottom: 0;
     left: 0;
