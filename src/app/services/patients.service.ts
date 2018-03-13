@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 
 @Injectable()
 export class PatientsService {
+  private API_HOST: string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -21,9 +22,9 @@ export class PatientsService {
   }
 
   getPatients(): Promise<any[]> {
-    return this.http.get<any>('assets/services/patients-service.json')
+    return this.http.get<any>(this.API_HOST+'/api/patients-service.json')
       .toPromise()
-      .then(res => <any[]>res.data);
+      .then(res => <any[]>res);
   }
 
   getPatientsPairList(): Promise<any[]> {
@@ -32,7 +33,7 @@ export class PatientsService {
         let ret: any[] = [];
         data.forEach(e => {
           ret.push({
-            "label": e.full_name,
+            "label": e.fullName,
             "value": e.id
           })
         });
@@ -47,7 +48,7 @@ export class PatientsService {
       .then(data => {
         let ret: any[] = [];
         ret = data.filter(e => {
-         return e.full_name.toLowerCase().indexOf(querylc) >= 0;
+         return e.fullName.toLowerCase().indexOf(querylc) >= 0;
         });
         console.log(JSON.stringify(ret));
         return ret;

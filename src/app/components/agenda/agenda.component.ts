@@ -60,7 +60,7 @@ export class AgendaComponent implements OnInit {
       this.scheduleViewEnd = params.view.end;
     }
     //TODO: should filter by date time range
-    this.appointmentsService.getAppointments().then(data => this.appointments = data);
+    this.appointmentsService.getAppointmentsAsSchedule().then(data => this.appointments = data);
     console.log("Events reloaded with range " + this.scheduleViewStart.format() + " - " + this.scheduleViewEnd.format());
   }
 

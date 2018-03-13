@@ -4,13 +4,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 
 @Injectable()
 export class ServicesService {
+  private API_HOST: string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
   getServices(): Promise<any[]> {
-    return this.http.get<any>('assets/services/services-service.json')
+    return this.http.get<any>(this.API_HOST+'/api/services-service.json')
       .toPromise()
-      .then(res => <any[]>res.data);
+      .then(res => <any[]>res);
     //.then(data => { return data; });
   }
 
