@@ -60,7 +60,7 @@ export class AgendaComponent implements OnInit {
       this.scheduleViewEnd = params.view.end;
     }
     //TODO: should filter by date time range
-    this.appointmentsService.getAppointmentsAsSchedule().then(data => this.appointments = data);
+    this.appointmentsService.getAppointmentsSchedule().then(data => this.appointments = data);
     console.log("Events reloaded with range " + this.scheduleViewStart.format() + " - " + this.scheduleViewEnd.format());
   }
 
@@ -90,10 +90,10 @@ export class AgendaComponent implements OnInit {
   addAppointment(): void {
     this.selectedAppointment = new Appointment({     
       "id": "",
-      "patient_id": "",
-      "doctor_id": "",
-      "service_id": "",
-      "clinic_id": "",
+      "patientId": "",
+      "doctorId": "",
+      "serviceId": "",
+      "clinicId": "",
       "start": "",
       "end": "",
       "created": "",
@@ -116,10 +116,10 @@ export class AgendaComponent implements OnInit {
   
     this.selectedAppointment = new Appointment({     
         "id": "",
-        "patient_id": "",
-        "doctor_id": "",
-        "service_id": "",
-        "clinic_id": "",
+        "patientId": "",
+        "doctorId": "",
+        "serviceId": "",
+        "clinicId": "",
         "start": sStartDate,
         "end": sEndDate,
         "created": "",

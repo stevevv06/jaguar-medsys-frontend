@@ -44,10 +44,10 @@ export class AppointmentComponent implements OnInit {
     //this.patientsService.getPatientsPairList().then(data => this.patientsList = data);
 
     this.appointmentForm = this.fb.group({
-      'patient_id': new FormControl('', Validators.required),
-      'service_id': new FormControl('', Validators.required),
-      'clinic_id': new FormControl('', Validators.required),
-      'doctor_id': new FormControl('', Validators.required),
+      'patientId': new FormControl('', Validators.required),
+      'serviceId': new FormControl('', Validators.required),
+      'clinicId': new FormControl('', Validators.required),
+      'doctorId': new FormControl('', Validators.required),
       'start': new FormControl('', Validators.required),
       'end': new FormControl('', Validators.required)
     });
@@ -71,10 +71,10 @@ export class AppointmentComponent implements OnInit {
   @Output() onSave = new EventEmitter<Appointment>();
   save(){
     //console.log(JSON.stringify(this.appointmentForm.controls));
-    this.appointment.patient_id = this.appointmentForm.get('patient_id').value.id;
-    this.appointment.service_id = this.appointmentForm.get('service_id').value;
-    this.appointment.clinic_id = this.appointmentForm.get('clinic_id').value;
-    this.appointment.doctor_id = this.appointmentForm.get('doctor_id').value;
+    this.appointment.patientId = this.appointmentForm.get('patientId').value.id;
+    this.appointment.serviceId = this.appointmentForm.get('serviceId').value;
+    this.appointment.clinicId = this.appointmentForm.get('clinicId').value;
+    this.appointment.doctorId = this.appointmentForm.get('doctorId').value;
     this.appointment.start = this.appointmentForm.get('start').value;
     this.appointment.end = this.appointmentForm.get('end').value;
     this.onSave.emit(this.appointment);
@@ -89,16 +89,16 @@ export class AppointmentComponent implements OnInit {
     this.appointmentForm.reset();
     if(this.appointment != null && this.appointment != undefined){
       this.optionDelete = !this.appointment.isNew;
-      if(this.appointment.patient_id !=null && this.appointment.patient_id != ""){        
-        this.patientsService.getPatient(this.appointment.patient_id).then(data => 
-          this.appointmentForm.get('patient_id').setValue(data)
+      if(this.appointment.patientId !=null && this.appointment.patientId != ""){        
+        this.patientsService.getPatient(this.appointment.patientId).then(data => 
+          this.appointmentForm.get('patientId').setValue(data)
         );        
       }else{
-        this.appointmentForm.get('patient_id').setValue(this.appointment.patient_id);
+        this.appointmentForm.get('patientId').setValue(this.appointment.patientId);
       }
-      this.appointmentForm.controls['service_id'].setValue(this.appointment.service_id);
-      this.appointmentForm.controls['clinic_id'].setValue(this.appointment.clinic_id);
-      this.appointmentForm.controls['doctor_id'].setValue(this.appointment.doctor_id);
+      this.appointmentForm.controls['serviceId'].setValue(this.appointment.serviceId);
+      this.appointmentForm.controls['clinicId'].setValue(this.appointment.clinicId);
+      this.appointmentForm.controls['doctorId'].setValue(this.appointment.doctorId);
       this.appointmentForm.controls['start'].setValue(new Date(moment(this.appointment.start).format()));
       this.appointmentForm.controls['end'].setValue(new Date(moment(this.appointment.end).format()));
       console.warn('too late :(');
