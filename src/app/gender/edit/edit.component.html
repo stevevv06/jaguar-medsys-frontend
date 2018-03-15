@@ -1,0 +1,39 @@
+<p-panel header="Edit Gender">
+    <form #editForm="ngForm" (ngSubmit)="save(editForm.value)">
+  
+      <input type="hidden" name="href" [(ngModel)]="gender.href">
+
+      <div class="ui-g ui-fluid">
+  
+        <div class="ui-g-12">
+          <label>Descripcion:</label>
+          <div class="ui-g-12">            
+            <input type="text" pInputText placeholder="Descripcion" 
+            [(ngModel)]="gender.gender" name="gender">   
+          </div>
+          <!--div class="ui-g-12" 
+            *ngIf="!editForm.controls['gender'].valid 
+              && appointmenteditForm.controls['gender'].dirty">
+            <p-message severity="error" text="Descripcion is required"></p-message>
+          </div-->
+        </div>
+        
+        <div class="ui-g-12">
+            <div class="ui-g-6 ui-sm-12">
+              <button pButton 
+                [disabled]="!editForm.form.valid" 
+                type="submit" label="Save" icon="fa fa-fw fa-save"></button>
+            </div>
+            <div class="{{isNew?'ui-g-6 ui-sm-12':'ui-g-3 ui-sm-6'}}" *ngIf="!isNew">
+              <button pButton (click)="remove(gender.href)"                 
+                type="button" label="Delete" icon="fa fa-fw fa-trash" class="ui-button-danger"></button>
+            </div>
+             <div class="{{isNew?'ui-g-6 ui-sm-12':'ui-g-3 ui-sm-6'}}">
+              <button pButton (click)="gotoList()" 
+                type="button" label="Cancel" icon="fa fa-fw fa-close" class="ui-button-secondary"></button>
+            </div>
+          </div>
+
+      </div>
+    </form>
+  </p-panel>

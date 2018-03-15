@@ -26,6 +26,7 @@ import {AgendaComponent} from './components/agenda/agenda.component';
 import {AppointmentComponent} from './components/appointment/appointment.component';
 import {SidenavmenuComponent} from './components/sidenavmenu/sidenavmenu.component';
 
+import {GenderModule} from './gender/gender.module';
 
 
 
@@ -37,7 +38,8 @@ import {SidenavmenuComponent} from './components/sidenavmenu/sidenavmenu.compone
     SidenavmenuComponent
   ],
   imports: [    
-    AppRoutingModule,
+    GenderModule,
+    AppRoutingModule,    
     BrowserModule,
     BrowserAnimationsModule,    
     HttpClientModule,

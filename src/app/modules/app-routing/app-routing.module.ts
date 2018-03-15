@@ -5,9 +5,10 @@ import {AgendaComponent} from '../../components/agenda/agenda.component';
 import {AppointmentComponent} from '../../components/appointment/appointment.component';
 
 const appRoutes: Routes = [
-  { path: 'agenda', component: AgendaComponent},
-  { path: 'appointment', component: AppointmentComponent},
   { path: '',   redirectTo: '/agenda', pathMatch: 'full' },
+  { path: 'agenda', component: AgendaComponent},
+  { path: '**', component: AgendaComponent }, //always last
+  
 ];
 
 @NgModule({
