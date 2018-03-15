@@ -4,6 +4,11 @@
   overflow: visible;
 }
 
+.paddingTB{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .separator{
   display: block;
   height: 10px;

@@ -1,34 +1,51 @@
-<!--div *ngFor="let gender of genders">
-  <p>{{gender.gender}}</p>
-  <a [routerLink]="['/genders/edit', gender.id]">{{gender.gender}}</a>
-</div-->
+<p-panel header="Catalogo de Generos">
+  
+  <div class="paddingTB">
+    <button pButton [routerLink]="['/genders/create']"
+      type="button" label="Nuevo" icon="fa fa-fw fa-plus"></button>
+  </div>
+  
 
-<button pButton [routerLink]="['/genders/create']"
-  type="button" label="Add" icon="fa fa-fw fa-plus"></button>
-
-
-<p-table [value]="genders" [columns]="cols" dataKey="id"
-  [paginator]="true" [rows]="10" [totalRecords]="page?.totalElements"
-  [lazy]="true" (onLazyLoad)="loadLazy($event)" [loading]="loading"
-  selectionMode="single">
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-        {{col.header}}
-        <p-sortIcon [field]="col.field"></p-sortIcon>
-      </th>
-      <th>Actions</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-data let-columns="columns">
-    <tr>
-      <td *ngFor="let col of columns">
-        {{data[col.field]}}
-      </td>
-      <td>
-        <button pButton [routerLink]="['/genders/edit', data.id]"
-          type="button" icon="fa fa-fw fa-edit"></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+  <p-table [value]="genders" dataKey="gender"
+    [paginator]="true" [rows]="10" [totalRecords]="page?.totalElements"
+    [lazy]="true" (onLazyLoad)="loadLazy($event)" [loading]="loading"
+    selectionMode="single" [responsive]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="gender">
+          Genero
+          <p-sortIcon field="gender"></p-sortIcon>
+        </th>
+        <th pSortableColumn="created">
+          Creado
+          <p-sortIcon field="created"></p-sortIcon>
+        </th>
+        <th pSortableColumn="modified">
+          Modificado
+          <p-sortIcon field="modified"></p-sortIcon>
+        </th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+      <tr>
+        <td>
+          <span class="ui-column-title">Genero</span>
+          {{data.gender}}
+        </td>
+        <td>
+          <span class="ui-column-title">Creado</span>
+          {{data.created | date:'short'}}
+        </td>
+        <td>
+          <span class="ui-column-title">Modificado</span>
+          {{data.modified | date:'short'}}
+        </td>
+        <td>
+          <button pButton [routerLink]="['/genders/edit', data.id]"
+            type="button" icon="fa fa-fw fa-edit"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

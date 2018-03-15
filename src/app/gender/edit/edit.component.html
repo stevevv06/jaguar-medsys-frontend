@@ -1,4 +1,4 @@
-<p-panel header="Edit Gender">
+<p-panel header="{{isNew? 'Nuevo' : 'Editar'}} Genero">
     <form #editForm="ngForm" (ngSubmit)="save(editForm.value)">
   
       <input type="hidden" name="href" [(ngModel)]="gender.href">
@@ -22,15 +22,15 @@
             <div class="ui-g-6 ui-sm-12">
               <button pButton 
                 [disabled]="!editForm.form.valid" 
-                type="submit" label="Save" icon="fa fa-fw fa-save"></button>
+                type="submit" label="Guardar" icon="fa fa-fw fa-save"></button>
             </div>
             <div class="{{isNew?'ui-g-6 ui-sm-12':'ui-g-3 ui-sm-6'}}" *ngIf="!isNew">
               <button pButton (click)="remove(gender.href)"                 
-                type="button" label="Delete" icon="fa fa-fw fa-trash" class="ui-button-danger"></button>
+                type="button" label="Borrar" icon="fa fa-fw fa-trash" class="ui-button-danger"></button>
             </div>
              <div class="{{isNew?'ui-g-6 ui-sm-12':'ui-g-3 ui-sm-6'}}">
               <button pButton (click)="gotoList()" 
-                type="button" label="Cancel" icon="fa fa-fw fa-close" class="ui-button-secondary"></button>
+                type="button" label="Cancelar" icon="fa fa-fw fa-close" class="ui-button-secondary"></button>
             </div>
           </div>
 
