@@ -1,0 +1,37 @@
+<p-panel header="{{isNew? 'Nuevo' : 'Editar'}} Paciente">
+    <form [formGroup]="editForm" (ngSubmit)="save()">  
+      
+      <div class="ui-g ui-fluid">
+  
+        <div class="ui-g-12">
+          <label>Descripcion:*</label>
+          <div class="ui-g-12">            
+            <input type="text" pInputText placeholder="Descripcion" 
+              formControlName="title">   
+          </div>
+          <div class="ui-g-12" 
+            *ngIf="!editForm.get('title').valid 
+              && editForm.get('title').dirty">
+            <p-message severity="error" text="Campo obligatorio"></p-message>
+          </div>
+        </div>
+        
+        <div class="ui-g-12">
+            <div class="ui-g-6 ui-sm-12">
+              <button pButton 
+                [disabled]="!editForm.valid" 
+                type="submit" label="Guardar" icon="fa fa-fw fa-save"></button>
+            </div>
+            <div class="{{isNew?'ui-g-6 ui-sm-12':'ui-g-3 ui-sm-6'}}" *ngIf="!isNew">
+              <button pButton (click)="remove(current.href)"                 
+                type="button" label="Borrar" icon="fa fa-fw fa-trash" class="ui-button-danger"></button>
+            </div>
+             <div class="{{isNew?'ui-g-6 ui-sm-12':'ui-g-3 ui-sm-6'}}">
+              <button pButton (click)="gotoList()" 
+                type="button" label="Cancelar" icon="fa fa-fw fa-close" class="ui-button-secondary"></button>
+            </div>
+          </div>
+
+      </div>
+    </form>
+  </p-panel>

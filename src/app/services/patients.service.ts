@@ -1,10 +1,12 @@
 import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PatientsService {
   private API_HOST: string = 'http://localhost:8080';
+  private API: string = this.API_HOST + '/patients';
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +28,17 @@ export class PatientsService {
       .toPromise()
       .then(res => <any[]>res);
   }
+
+  getAllLazy(filter: any, page: any, size: any, sort: any): Observable<any> {
+    let search = this.API+'/search/findByTitle';
+    let filterStr: string = 'title=' + (filter != null? filter : '');
+    let sortStr: string;
+    if(page != null || size != null || sort != null){
+      sortStr = 'page=' + page + '&size=' + size + '&sort=' + sort;
+    }
+    search += '?' + filterStr + '&' + sortStr;
+    return this.http.get<any>(search);
+  } 
 
   getPatientsPairList(): Promise<any[]> {
     return this.getPatients()
@@ -53,6 +66,24 @@ export class PatientsService {
         console.log(JSON.stringify(ret));
         return ret;
       });      
+  }
+
+  get(id: string) {
+    return this.http.get(this.API + '/' + id);
+  }
+
+  save(patient: any): Observable<any> {
+    let result: Observable<Object>;
+    if (patient['href']) {
+      result = this.http.put(patient.href, patient);
+    } else {
+      result = this.http.post(this.API, patient);
+    }
+    return result;
+  }
+
+  remove(href: string) {
+    return this.http.delete(href);
   }
 
 }

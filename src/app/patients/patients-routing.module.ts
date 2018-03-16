@@ -7,11 +7,11 @@ import {ViewComponent} from './view/view.component';
 
 
 const routes: Routes = [
-  { path: 'genders',          component: ListComponent },
-  { path: 'genders/list',     component: ListComponent },
-  { path: 'genders/create',   component: EditComponent },
-  { path: 'genders/edit/:id', component: EditComponent },
-  { path: 'genders/view/:id', component: ViewComponent }
+  { path: 'patients',          component: ListComponent },
+  { path: 'patients/list',     component: ListComponent },
+  { path: 'patients/create',   component: EditComponent },
+  { path: 'patients/edit/:id', component: EditComponent },
+  { path: 'patients/view/:id', component: ViewComponent }
 
    
 ];
@@ -28,4 +28,4 @@ const routes: Routes = [
   ],
   declarations: []
 })
-export class GenderRoutingModule { }
+export class PatientsRoutingModule { }

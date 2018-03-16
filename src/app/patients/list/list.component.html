@@ -1,0 +1,51 @@
+<p-panel header="Catalogo de Pacientes">
+  
+  <div class="padding-tb">
+    <button pButton routerLink="{{mPath}}/create"
+      type="button" label="Nuevo" icon="fa fa-fw fa-plus"></button>
+  </div>  
+
+  <p-table #dt [value]="data" [columns]="cols"
+    [paginator]="true" [rows]="10" [totalRecords]="page?.totalElements"
+    [lazy]="true" (onLazyLoad)="loadLazy($event)" [loading]="loading"
+    selectionMode="single" [responsive]="true" sortMode="single">
+
+    <ng-template pTemplate="caption">
+      <div class="table-global-filter">   
+        <div class="ui-inputgroup">               
+          <input type="text" pInputText placeholder="Busqueda" 
+            (input)="dt.filterGlobal($event.target.value, 'contains')">
+            <span class="ui-inputgroup-addon"><i class="fa fa-fw fa-search"></i></span>          
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>      
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-data let-columns="columns">      
+      <tr>
+        <td *ngFor="let col of columns" [ngSwitch]="col.type">
+          <span class="ui-column-title">{{col.header}}</span>
+          <span *ngSwitchCase="'date'">
+            {{data[col.field] | date:'dd/MM/yy h:mm a'}}
+          </span>
+          <span *ngSwitchDefault>
+            {{data[col.field]}}
+          </span>
+        </td>
+        <td>
+          <button pButton [routerLink]="[mPath+'/edit', data.id]"
+            type="button" pTooltip="Editar" tooltipPosition="bottom" icon="fa fa-fw fa-edit"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-panel>

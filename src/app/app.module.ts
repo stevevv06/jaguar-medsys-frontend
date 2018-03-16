@@ -26,9 +26,8 @@ import {AgendaComponent} from './components/agenda/agenda.component';
 import {AppointmentComponent} from './components/appointment/appointment.component';
 import {SidenavmenuComponent} from './components/sidenavmenu/sidenavmenu.component';
 
-import {GenderModule} from './gender/gender.module';
-
-
+import {GendersModule} from './genders/genders.module';
+import {PatientsModule} from './patients/patients.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,8 @@ import {GenderModule} from './gender/gender.module';
     SidenavmenuComponent
   ],
   imports: [    
-    GenderModule,
+    GendersModule,
+    PatientsModule,
     AppRoutingModule,    
     BrowserModule,
     BrowserAnimationsModule,    

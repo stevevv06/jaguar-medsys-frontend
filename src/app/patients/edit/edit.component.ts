@@ -4,16 +4,16 @@ import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Message} from 'primeng/components/common/api';
 import {MessageService} from 'primeng/components/common/messageservice';
-import {GendersService} from '../../services/genders.service';
+import {PatientsService} from '../../services/patients.service';
 
 
 @Component({
-  selector: 'gender-edit',
+  selector: 'patients-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit, OnDestroy {
-  mPath:string = '/genders';
+  mPath:string = '/patients';
   current: any = {};
   editForm: FormGroup;
   sub: Subscription;
@@ -23,7 +23,7 @@ export class EditComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private gendersService: GendersService,
+    private patientsService: PatientsService,
     private messageService: MessageService) {
       this.createForm();
    }
@@ -34,7 +34,7 @@ export class EditComponent implements OnInit, OnDestroy {
     this.isNew = true; 
     if (id) {
       this.isNew = false; 
-      this.gendersService.get(id).subscribe((gender: any) => {
+      this.patientsService.get(id).subscribe((gender: any) => {
         if (gender) {           
           this.current = gender;
           this.current.href = gender._links.self.href;
@@ -81,7 +81,7 @@ export class EditComponent implements OnInit, OnDestroy {
 
   save() {
     this.prepareSave();
-    this.gendersService.save(this.current).subscribe(result => {
+    this.patientsService.save(this.current).subscribe(result => {
       this.messageService.add({severity:'success', summary:'Registro guardado exitosamente', detail: this.current.title});
       this.gotoList();
    }, error => {
@@ -90,7 +90,7 @@ export class EditComponent implements OnInit, OnDestroy {
  }
 
   remove(href) {
-    this.gendersService.remove(href).subscribe(result => {
+    this.patientsService.remove(href).subscribe(result => {
       this.messageService.add({severity:'success', summary:'Registro borrado'});
       this.gotoList();
    }, error => this.messageService.add({severity:'error', summary:'Error al borrar'}));

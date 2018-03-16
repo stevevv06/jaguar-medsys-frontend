@@ -3,29 +3,29 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Message} from 'primeng/components/common/api';
 import {MessageService} from 'primeng/components/common/messageservice';
-import {GendersService} from '../../services/genders.service';
+import {PatientsService} from '../../services/patients.service';
 
 @Component({
-  selector: 'app-view',
+  selector: 'patients-view',
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit {
-  mPath:string = '/genders';
+  mPath:string = '/patients';
   current: any = {};
   sub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private gendersService: GendersService,
+    private patientsService: PatientsService,
     private messageService: MessageService) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];      
       if (id) {       
-        this.gendersService.get(id).subscribe(
+        this.patientsService.get(id).subscribe(
           (gender: any) => {
             if (gender) {           
               this.current = gender;
@@ -53,7 +53,7 @@ export class ViewComponent implements OnInit {
  }
 
   remove(href) {
-    this.gendersService.remove(href).subscribe(result => {
+    this.patientsService.remove(href).subscribe(result => {
       this.messageService.add({severity:'success', summary:'Registro borrado'});
       this.gotoList();
    }, error => this.messageService.add({severity:'error', summary:'Error al borrar'}));

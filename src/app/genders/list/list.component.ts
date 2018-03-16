@@ -7,7 +7,7 @@ import {MessageService} from 'primeng/components/common/messageservice';
 import {GendersService} from '../../services/genders.service';
 
 @Component({
-  selector: 'app-list',
+  selector: 'genders-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
