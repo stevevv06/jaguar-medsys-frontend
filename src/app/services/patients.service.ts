@@ -33,7 +33,7 @@ export class PatientsService {
         let ret: any[] = [];
         data.forEach(e => {
           ret.push({
-            "label": e.fullName,
+            "label": e.title,
             "value": e.id
           })
         });

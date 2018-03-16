@@ -14,12 +14,15 @@ export class GendersService {
     return this.http.get<any>(this.API);
   }
 
-  getAllLazy(page: any, size: any, sort: any): Observable<any> {
-    let bu = this.API;
+  getAllLazy(filter: any, page: any, size: any, sort: any): Observable<any> {
+    let search = this.API+'/search/findByTitle';
+    let filterStr: string = 'title=' + (filter != null? filter : '');
+    let sortStr: string;
     if(page != null || size != null || sort != null){
-      bu = bu + '?page=' + page + '&size=' + size + '&sort=' + sort;
+      sortStr = 'page=' + page + '&size=' + size + '&sort=' + sort;
     }
-    return this.http.get<any>(bu);
+    search += '?' + filterStr + '&' + sortStr;
+    return this.http.get<any>(search);
   }
 
   getAllPairList(): Promise<any[]> {
@@ -28,7 +31,7 @@ export class GendersService {
         let ret: any[] = [];
         data.forEach(e => {
           ret.push({
-            "label": e.gender,
+            "label": e.title,
             "value": e.id
           })
         });

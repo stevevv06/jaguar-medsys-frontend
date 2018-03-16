@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {PanelModule} from 'primeng/components/panel/panel';
@@ -27,7 +27,6 @@ import {ViewComponent} from './view/view.component';
     CommonModule,
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule,
     HttpClientModule,
     PanelModule,
     ButtonModule,

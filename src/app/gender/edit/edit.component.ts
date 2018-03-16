@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GendersService } from '../../services/genders.service';
@@ -11,13 +11,18 @@ import { GendersService } from '../../services/genders.service';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit, OnDestroy {
-  gender: any = {};
+  current: any = {};
+  editForm: FormGroup;
   sub: Subscription;
   isNew:boolean = false;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
-    private gendersService: GendersService,) { }
+    private gendersService: GendersService) {
+      this.createForm();
+    }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -27,8 +32,9 @@ export class EditComponent implements OnInit, OnDestroy {
       this.isNew = false; 
       this.gendersService.get(id).subscribe((gender: any) => {
         if (gender) {            
-          this.gender = gender;
-          this.gender.href = gender._links.self.href;            
+          this.current = gender;
+          this.current.href = gender._links.self.href;
+          this.updateForm();            
         } else {
           console.log(`Gender with id '${id}' not found, returning to list`);
           this.gotoList();
@@ -36,6 +42,25 @@ export class EditComponent implements OnInit, OnDestroy {
       });
     }
     });
+  }
+
+  createForm() {
+    this.editForm = this.fb.group({
+      title: ['', Validators.required ],
+    });
+  }
+
+  updateForm(){
+    if(this.current){
+      this.editForm.setValue({
+        title: this.current.title
+      });
+    }
+  }
+
+  prepareSave(){
+    const formModel = this.editForm.value;
+    this.current.title = formModel.title;
   }
 
   ngOnDestroy(){
@@ -46,8 +71,9 @@ export class EditComponent implements OnInit, OnDestroy {
     this.router.navigate(['/genders/list']);
   }
 
-  save(form: NgForm) {
-    this.gendersService.save(this.gender).subscribe(result => {
+  save() {
+    this.prepareSave();
+    this.gendersService.save(this.current).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }

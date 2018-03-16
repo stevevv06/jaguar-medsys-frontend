@@ -8,7 +8,7 @@
         <!--p-dropdown [options]="patientsList" formControlName="patientId" lazy="true" placeholder="Seleccione Paciente" [autoWidth]="false"></p-dropdown-->
         <p-autoComplete formControlName="patientId" 
           [suggestions]="patientsList"
-          field="fullName" dataKey="id"
+          field="title" dataKey="id"
           (completeMethod)="searchPatients($event)"
           placeholder="Seleccione Paciente"
           emptyMessage="No se encuentra paciente"
@@ -16,7 +16,7 @@
           <ng-template let-appointment pTemplate="item">    
             <div class="ui-g">
               <div class="ui-g-1 ui-sm-2"><span class="fa fa-fw fa-user"></span></div> 
-              <div class="ui-g-7 ui-sm-10">{{appointment.fullName}}</div>
+              <div class="ui-g-7 ui-sm-10">{{appointment.title}}</div>
               <div class="ui-g-4 ui-sm-10 ui-sm-offset-2">{{appointment.phone1}}{{appointment.phone2 != '' ? ', '+appointment.phone2 : ''}}</div>                         
             </div>
         </ng-template>

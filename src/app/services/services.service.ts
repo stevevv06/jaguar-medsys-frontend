@@ -21,7 +21,7 @@ export class ServicesService {
         let ret: any[] = [];
         data.forEach(e => {
           ret.push({
-            "label": e.service,
+            "label": e.title,
             "value": e.id
           })
         });

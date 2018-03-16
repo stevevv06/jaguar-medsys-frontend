@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GendersService } from '../../services/genders.service';
 import { LazyLoadEvent } from 'primeng/components/common/api';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-list',
@@ -11,7 +13,7 @@ export class ListComponent implements OnInit {
   data: any[];
   cols: any[];
   page: any;
-  loading: boolean = false;
+  loading: boolean = true;
 
   constructor(private service: GendersService) { }
 
@@ -19,33 +21,32 @@ export class ListComponent implements OnInit {
     this.data = [];
 
     this.cols = [      
-      {field: 'gender', header: 'Genero'},
-      {field: 'created', header: 'Creado'},
-      {field: 'modified', header: 'Modificado'}];
+      {field: 'title',    header: 'Genero',     type: 'string'},
+      {field: 'created',  header: 'Creado',     type: 'date'},
+      {field: 'modified', header: 'Modificado', type: 'date'}];
   }
 
   
   loadLazy(event: LazyLoadEvent) {  
-
-    //in a real application, make a remote request to load data using state metadata from event
     //event.first = First row offset
     //event.rows = Number of rows per page
     //event.sortField = Field name to sort with
     //event.sortOrder = Sort order as number, 1 for asc and -1 for dec
     //filters: FilterMetadata object having field as key and filter value, filter matchMode as value
 
-    //imitate db connection over a network
-    //this.loading = true;
+    this.loading = true;
+    console.log(JSON.stringify(event));
     let pageCalc = event.first/event.rows;
     let sortStr = event.sortField?
       event.sortField+','+ (event.sortOrder == 1?'asc':'desc') : 
       '';    
-    this.service.getAllLazy(pageCalc, event.rows, sortStr).subscribe(
-      data => {        
-        //this.loading = false;
+    let filterStr = event.globalFilter;
+    this.service.getAllLazy(filterStr, pageCalc, event.rows, sortStr)
+    .finally(() => this.loading = false)
+    .subscribe(
+      data => {
         this.data = data._embedded.genders;      
-        this.page = data.page;
-                
+        this.page = data.page;                
       }
     );
 }
