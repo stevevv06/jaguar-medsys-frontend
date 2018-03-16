@@ -14,7 +14,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content id="app-main-container">        
-        <p-growl></p-growl>    
+        <p-growl [life]="10000"></p-growl>    
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
