@@ -56,7 +56,7 @@ export class ViewComponent implements OnInit {
     this.gendersService.remove(href).subscribe(result => {
       this.messageService.add({severity:'success', summary:'Registro borrado'});
       this.gotoList();
-   }, error => this.messageService.add({severity:'error', summary:'Error al borrar', detail:error}));
+   }, error => this.messageService.add({severity:'error', summary:'Error al borrar'}));
  }
 
 }

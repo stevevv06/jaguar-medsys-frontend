@@ -93,6 +93,6 @@ export class EditComponent implements OnInit, OnDestroy {
     this.gendersService.remove(href).subscribe(result => {
       this.messageService.add({severity:'success', summary:'Registro borrado'});
       this.gotoList();
-   }, error => this.messageService.add({severity:'error', summary:'Error al borrar', detail:error}));
+   }, error => this.messageService.add({severity:'error', summary:'Error al borrar'}));
  }
 }

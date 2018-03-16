@@ -53,7 +53,7 @@ export class ListComponent implements OnInit {
         this.data = data._embedded.genders;      
         this.page = data.page;                
      },
-     error => this.messageService.add({severity:'error', summary:'Error al obtener datos', detail:JSON.stringify(error)})
+     error => this.messageService.add({severity:'error', summary:'Error al obtener datos', detail:error.message})
     );
 }
 
