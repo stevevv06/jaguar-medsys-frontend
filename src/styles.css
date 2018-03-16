@@ -20,6 +20,9 @@
   width:auto;  
 }
 
+.ui-growl{
+  margin-top: 60px;
+}
 
 .separator{
   display: block;
