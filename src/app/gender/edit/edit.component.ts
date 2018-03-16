@@ -43,6 +43,10 @@ export class EditComponent implements OnInit, OnDestroy {
         this.messageService.add({severity:'warn', summary:'Registro no encontrado', detail:'Registro no encontrado'});
           this.gotoList();
        }
+     },
+     error => {
+       this.messageService.add({severity:'warn', summary:'Registro no encontrado', detail:'Registro no encontrado'});
+       this.gotoList();
      });
    }
    });
