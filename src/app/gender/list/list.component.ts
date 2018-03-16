@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { GendersService } from '../../services/genders.service';
-import { LazyLoadEvent } from 'primeng/components/common/api';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/finally';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {LazyLoadEvent} from 'primeng/components/common/api';
+import {Message} from 'primeng/components/common/api';
+import {MessageService} from 'primeng/components/common/messageservice';
+import {GendersService} from '../../services/genders.service';
 
 @Component({
   selector: 'app-list',
@@ -10,12 +12,15 @@ import 'rxjs/add/operator/finally';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  mPath:string = '/genders';
   data: any[];
   cols: any[];
   page: any;
   loading: boolean = true;
 
-  constructor(private service: GendersService) { }
+  constructor(
+    private service: GendersService,
+    private messageService: MessageService) {}
 
   ngOnInit() {
     this.data = [];
@@ -24,10 +29,10 @@ export class ListComponent implements OnInit {
       {field: 'title',    header: 'Genero',     type: 'string'},
       {field: 'created',  header: 'Creado',     type: 'date'},
       {field: 'modified', header: 'Modificado', type: 'date'}];
-  }
+ }
 
   
-  loadLazy(event: LazyLoadEvent) {  
+  loadLazy(event: LazyLoadEvent) { 
     //event.first = First row offset
     //event.rows = Number of rows per page
     //event.sortField = Field name to sort with
@@ -47,7 +52,8 @@ export class ListComponent implements OnInit {
       data => {
         this.data = data._embedded.genders;      
         this.page = data.page;                
-      }
+     },
+     error => error => this.messageService.add({severity:'error', summary:'Error al obtener datos', detail:error})
     );
 }
 

@@ -11,9 +11,9 @@ import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import {TableModule} from 'primeng/components/table/table';
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {GrowlModule} from 'primeng/components/growl/growl';
-import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import {MessageModule} from 'primeng/components/message/message';
-import {ToolbarModule} from 'primeng/components/toolbar/toolbar';
+import {MessageService} from 'primeng/components/common/messageservice';
+import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 
 import {GenderRoutingModule} from './gender-routing.module';
 import {GendersService} from '../services/genders.service';
@@ -36,7 +36,6 @@ import {ViewComponent} from './view/view.component';
     GrowlModule,
     DropdownModule,
     MessageModule,
-    ToolbarModule,
     GenderRoutingModule
   ],
   declarations: [    
@@ -44,6 +43,9 @@ import {ViewComponent} from './view/view.component';
     ListComponent,
     ViewComponent
   ],
-  providers: [ GendersService ]
+  providers: [
+    GendersService,
+    MessageService
+  ]
 })
 export class GenderModule { }

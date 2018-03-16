@@ -23,7 +23,7 @@
                 type="submit" label="Guardar" icon="fa fa-fw fa-save"></button>
             </div>
             <div class="{{isNew?'ui-g-6 ui-sm-12':'ui-g-3 ui-sm-6'}}" *ngIf="!isNew">
-              <button pButton (click)="remove(editForm.get('href').value)"                 
+              <button pButton (click)="remove(current.href)"                 
                 type="button" label="Borrar" icon="fa fa-fw fa-trash" class="ui-button-danger"></button>
             </div>
              <div class="{{isNew?'ui-g-6 ui-sm-12':'ui-g-3 ui-sm-6'}}">

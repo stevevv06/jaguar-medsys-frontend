@@ -1,7 +1,7 @@
 <p-panel header="Catalogo de Generos">
   
   <div class="padding-tb">
-    <button pButton routerLink="/genders/create"
+    <button pButton routerLink="{{mPath}}/create"
       type="button" label="Nuevo" icon="fa fa-fw fa-plus"></button>
   </div>  
 
@@ -26,6 +26,7 @@
           {{col.header}}
           <p-sortIcon [field]="col.field"></p-sortIcon>
         </th>
+        <th>Acciones</th>
       </tr>
     </ng-template>
 
@@ -39,6 +40,10 @@
           <span *ngSwitchDefault>
             {{data[col.field]}}
           </span>
+        </td>
+        <td>
+          <button pButton [routerLink]="[mPath+'/edit', data.id]"
+            type="button" pTooltip="Editar" tooltipPosition="bottom" icon="fa fa-fw fa-edit"></button>
         </td>
       </tr>
     </ng-template>

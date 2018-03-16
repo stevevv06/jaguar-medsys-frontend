@@ -7,9 +7,9 @@ import {ViewComponent} from './view/view.component';
 
 
 const routes: Routes = [
-  { path: 'genders',  component: ListComponent },
-  { path: 'genders/list', component: ListComponent },
-  { path: 'genders/create', component: EditComponent },
+  { path: 'genders',          component: ListComponent },
+  { path: 'genders/list',     component: ListComponent },
+  { path: 'genders/create',   component: EditComponent },
   { path: 'genders/edit/:id', component: EditComponent },
   { path: 'genders/view/:id', component: ViewComponent }
 
