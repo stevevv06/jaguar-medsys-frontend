@@ -26,8 +26,12 @@ export class ListComponent implements OnInit {
     this.data = [];
 
     this.cols = [      
-      {field: 'title',    header: 'Genero',     type: 'string'},
-      {field: 'created',  header: 'Creado',     type: 'date'},
+      {field: 'title', header: 'Nombre', type: 'string'},
+      {field: 'gender.title', header: 'Genero', type: 'string'},
+      {field: 'birthdate', header: 'F Nacimiento', type: 'string'},
+      {field: 'phone1', header: 'Telefono 1', type: 'string'},
+      {field: 'phone2', header: 'Telefono 2', type: 'string'},
+      {field: 'created', header: 'Creado', type: 'date'},
       {field: 'modified', header: 'Modificado', type: 'date'}];
  }
 
