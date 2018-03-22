@@ -27,7 +27,6 @@ export class ListComponent implements OnInit {
 
     this.cols = [      
       {field: 'title', header: 'Nombre', type: 'string'},
-      {field: 'gender.title', header: 'Genero', type: 'string'},
       {field: 'birthdate', header: 'F Nacimiento', type: 'string'},
       {field: 'phone1', header: 'Telefono 1', type: 'string'},
       {field: 'phone2', header: 'Telefono 2', type: 'string'},

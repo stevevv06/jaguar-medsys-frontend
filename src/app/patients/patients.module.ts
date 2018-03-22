@@ -7,6 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {PanelModule} from 'primeng/components/panel/panel';
 import {ButtonModule} from 'primeng/components/button/button';
+import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import {TableModule} from 'primeng/components/table/table';
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
@@ -30,6 +31,7 @@ import {ViewComponent} from './view/view.component';
     HttpClientModule,
     PanelModule,
     ButtonModule,
+    CalendarModule,
     TooltipModule,
     TableModule,
     InputTextModule,

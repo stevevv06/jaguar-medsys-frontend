@@ -29,10 +29,11 @@ export class GendersService {
     return this.getAll().toPromise()
       .then(data => {
         let ret: any[] = [];
-        data.forEach(e => {
+        data._embedded.genders.forEach(e => {
+          delete e['_links'];
           ret.push({
             "label": e.title,
-            "value": e.id
+            "value": e
           })
         });
         return ret;

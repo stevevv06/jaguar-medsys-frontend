@@ -5,12 +5,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Message} from 'primeng/components/common/api';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {PatientsService} from '../../services/patients.service';
+import {GendersService} from '../../services/genders.service';
 
 
 @Component({
   selector: 'patients-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  styleUrls: ['./edit.component.scss'],
+  providers: [
+    GendersService
+  ]
 })
 export class EditComponent implements OnInit, OnDestroy {
   mPath:string = '/patients';
@@ -19,12 +23,16 @@ export class EditComponent implements OnInit, OnDestroy {
   sub: Subscription;
   isNew:boolean = false;
 
+  gendersList:any[];
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private patientsService: PatientsService,
+    private gendersService: GendersService,
     private messageService: MessageService) {
+      this.gendersService.getAllPairList().then(data => this.gendersList = data);
       this.createForm();
    }
 
@@ -54,14 +62,38 @@ export class EditComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.editForm = this.fb.group({
-      title: ['', Validators.required ],
+      names: ['', Validators.required ],
+      surnames: ['', Validators.required ],
+      gender: ['', Validators.required ],
+      birthDate: ['', Validators.required ],
+      address: ['', Validators.required ],
+      workplace: ['', Validators.required ],
+      phone1: ['', Validators.required ],
+      phone2: ['', Validators.required ],
+      email: ['', Validators.required ],
+      desease: ['', Validators.required ],
+      allergies: ['', Validators.required ],
+      reasonForConsultation: ['', Validators.required ],
+      lastVisitToMedic: ['', Validators.required ]
    });
  }
 
   updateForm(){
     if(this.current){
       this.editForm.setValue({
-        title: this.current.title
+        names: this.current.names,
+        surnames: this.current.surnames,
+        gender: this.current.gender,
+        birthDate: this.current.birthDate,
+        address: this.current.address,
+        workplace: this.current.workplace,
+        phone1: this.current.phone1,
+        phone2: this.current.phone2,
+        email: this.current.email,
+        desease: this.current.desease,
+        allergies: this.current.allergies,
+        reasonForConsultation: this.current.reasonForConsultation,
+        lastVisitToMedic: this.current.lastVisitToMedic
      });
    }
  }
