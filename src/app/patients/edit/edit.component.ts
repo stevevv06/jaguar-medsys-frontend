@@ -22,6 +22,7 @@ export class EditComponent implements OnInit, OnDestroy {
   editForm: FormGroup;
   sub: Subscription;
   isNew:boolean = false;
+  calculatedAge:string;
 
   gendersList:any[];
 
@@ -42,10 +43,10 @@ export class EditComponent implements OnInit, OnDestroy {
     this.isNew = true; 
     if (id) {
       this.isNew = false; 
-      this.patientsService.get(id).subscribe((gender: any) => {
-        if (gender) {           
-          this.current = gender;
-          this.current.href = gender._links.self.href;
+      this.patientsService.get(id).subscribe((data: any) => {
+        if (data) {           
+          this.current = data;
+          this.current.href = data._links.self.href;
           this.updateForm();            
        } else {
         this.messageService.add({severity:'warn', summary:'Registro no encontrado', detail:'Registro no encontrado'});
@@ -79,12 +80,13 @@ export class EditComponent implements OnInit, OnDestroy {
  }
 
   updateForm(){
+    console.log(JSON.stringify(this.current));
     if(this.current){
-      this.editForm.setValue({
+      this.editForm.patchValue({
         names: this.current.names,
         surnames: this.current.surnames,
-        gender: this.current.gender,
-        birthDate: this.current.birthDate,
+        //gender: this.current.gender,
+        birthDate: new Date(this.current.birthDate),
         address: this.current.address,
         workplace: this.current.workplace,
         phone1: this.current.phone1,
@@ -100,7 +102,19 @@ export class EditComponent implements OnInit, OnDestroy {
 
   prepareSave(){
     const formModel = this.editForm.value;
-    this.current.title = formModel.title;
+    this.current.names = formModel.names
+    this.current.surnames = formModel.surnames
+    this.current.gender = formModel.gender
+    this.current.birthDate = formModel.birthDate
+    this.current.address = formModel.address
+    this.current.workplace = formModel.workplace
+    this.current.phone1 = formModel.phone1
+    this.current.phone2 = formModel.phone2
+    this.current.email = formModel.email
+    this.current.desease = formModel.desease
+    this.current.allergies = formModel.allergies
+    this.current.reasonForConsultation = formModel.reasonForConsultation
+    this.current.lastVisitToMedic = formModel.lastVisitToMedic
  }
 
   ngOnDestroy(){

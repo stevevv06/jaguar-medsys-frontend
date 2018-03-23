@@ -26,10 +26,10 @@ export class ViewComponent implements OnInit {
       const id = params['id'];      
       if (id) {       
         this.patientsService.get(id).subscribe(
-          (gender: any) => {
-            if (gender) {           
-              this.current = gender;
-              this.current.href = gender._links.self.href;            
+          (data: any) => {
+            if (data) {           
+              this.current = data;
+              this.current.href = data._links.self.href;            
             } else {            
               this.messageService.add({severity:'warn', summary:'Registro no encontrado', detail:'Registro no encontrado'});
               this.gotoList();

@@ -34,10 +34,10 @@ export class EditComponent implements OnInit, OnDestroy {
     this.isNew = true; 
     if (id) {
       this.isNew = false; 
-      this.gendersService.get(id).subscribe((gender: any) => {
-        if (gender) {           
-          this.current = gender;
-          this.current.href = gender._links.self.href;
+      this.gendersService.get(id).subscribe((data: any) => {
+        if (data) {           
+          this.current = data;
+          this.current.href = data._links.self.href;
           this.updateForm();            
        } else {
         this.messageService.add({severity:'warn', summary:'Registro no encontrado', detail:'Registro no encontrado'});

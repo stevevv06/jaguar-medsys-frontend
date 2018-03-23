@@ -3,178 +3,230 @@
       {{editForm.value | json}}
       <div class="ui-g ui-fluid">
   
-        <div class="ui-g-12">
-          <label>Nombres:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Nombres" 
-              formControlName="names">   
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12"> 
+              <label>Nombres:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Nombres" 
+                formControlName="names">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('names').valid 
+                && editForm.get('names').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
           </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('names').valid 
-              && editForm.get('names').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
 
-        <div class="ui-g-12">
-          <label>Apellidos:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Apellidos" 
-              formControlName="surnames">   
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('surnames').valid 
-              && editForm.get('surnames').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12"> 
+              <label>Apellidos:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Apellidos" 
+                formControlName="surnames">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('surnames').valid 
+                && editForm.get('surnames').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
           </div>
         </div>
         
-        <div class="ui-g-12">
-          <label>Genero:*</label>
-          <div class="ui-g-12">            
-            <p-dropdown [options]="gendersList" placeholder="Seleccione Genero" 
-              formControlName="gender" lazy="true" [autoWidth]="false"></p-dropdown>  
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('gender').valid 
-              && editForm.get('gender').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
 
-        <div class="ui-g-12">
-          <label>Fecha de nacimiento:*</label>
-          <div class="ui-g-12">           
-            <p-calendar placeholder="dd/mm/yyyy" 
-              formControlName="birthDate" showIcon="true" 
-              [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2100"
-              [showOnFocus]="false" dateFormat="dd/mm/yy"></p-calendar>   
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12"> 
+              <label>Genero:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <p-dropdown [options]="gendersList" placeholder="Seleccione Genero" 
+                formControlName="gender" lazy="true" [autoWidth]="false"></p-dropdown>  
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('gender').valid 
+                && editForm.get('gender').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
           </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('birthDate').valid 
-              && editForm.get('birthDate').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
 
-        <div class="ui-g-12">
-          <label>Direccion:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Direccion" 
-              formControlName="address">   
+          <div class="ui-g-4 ui-sm-9">
+            <div class="ui-g-12">
+              <label>Fecha de nacimiento:*</label>
+            </div>
+            <div class="ui-g-12">           
+              <p-calendar placeholder="dd/mm/yyyy" 
+                formControlName="birthDate" showIcon="true" 
+                [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2100"
+                [showOnFocus]="false" dateFormat="dd/mm/yy" [utc]="true"></p-calendar>   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('birthDate').valid 
+                && editForm.get('birthDate').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
           </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('address').valid 
-              && editForm.get('address').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
 
-        <div class="ui-g-12">
-          <label>Lugar de trabajo:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Lugar de trabajo" 
-              formControlName="workplace">   
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('workplace').valid 
-              && editForm.get('workplace').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
+          <div class="ui-g-2 ui-sm-3">
+              <div class="ui-g-12">                
+                <label>Edad:</label>
+              </div>
+              <div class="ui-g-12">            
+                <label>{{calculatedAge}}</label>   
+              </div>              
+            </div>
+        </div>  
+      
 
-        <div class="ui-g-12">
-          <label>Telefono 1:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Telefono 1" 
-              formControlName="phone1">   
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12">  
+              <label>Direccion:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Direccion" 
+                formControlName="address">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('address').valid 
+                && editForm.get('address').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
           </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('phone1').valid 
-              && editForm.get('phone1').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
 
-        <div class="ui-g-12">
-          <label>Telefono 2:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Telefono 2" 
-              formControlName="phone2">   
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('phone2').valid 
-              && editForm.get('phone2').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
-
-        <div class="ui-g-12">
-          <label>Email:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Email" 
-              formControlName="email">   
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('email').valid 
-              && editForm.get('email').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
-
-        <div class="ui-g-12">
-          <label>Enfermedades:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Enfermedades" 
-              formControlName="desease">   
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('desease').valid 
-              && editForm.get('desease').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
-
-        <div class="ui-g-12">
-          <label>Alergias:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Alergias" 
-              formControlName="allergies">   
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('allergies').valid 
-              && editForm.get('allergies').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
-
-        <div class="ui-g-12">
-          <label>Razon de la consulta:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Razon de la consulta" 
-              formControlName="reasonForConsultation">   
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('reasonForConsultation').valid 
-              && editForm.get('reasonForConsultation').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
-        </div>
-
-        <div class="ui-g-12">
-            <label>Ultima visita al medico:*</label>
-          <div class="ui-g-12">            
-            <input type="text" pInputText placeholder="Ultima visita al medico" 
-              formControlName="lastVisitToMedic">   
-          </div>
-          <div class="ui-g-12" 
-            *ngIf="!editForm.get('lastVisitToMedic').valid 
-              && editForm.get('lastVisitToMedic').dirty">
-            <p-message severity="error" text="Campo obligatorio"></p-message>
-          </div>
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12">                
+              <label>Lugar de trabajo:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Lugar de trabajo" 
+                formControlName="workplace">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('workplace').valid 
+                && editForm.get('workplace').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
+          </div>          
         </div>
 
 
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-3 ui-sm-12">
+            <div class="ui-g-12">                
+              <label>Telefono 1:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Telefono 1" 
+                formControlName="phone1">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('phone1').valid 
+                && editForm.get('phone1').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
+          </div>
+
+          <div class="ui-g-3 ui-sm-12">
+            <div class="ui-g-12"> 
+              <label>Telefono 2:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Telefono 2" 
+                formControlName="phone2">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('phone2').valid 
+                && editForm.get('phone2').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
+          </div>
+
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12"> 
+              <label>Email:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Email" 
+                formControlName="email">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('email').valid 
+                && editForm.get('email').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12">               
+              <label>Padece de alguna enfermedad:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Padece de alguna enfermedad" 
+                formControlName="desease">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('desease').valid 
+                && editForm.get('desease').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
+          </div>
+
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12">
+              <label>Ultima visita al medico:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Ultima visita al medico" 
+                formControlName="lastVisitToMedic">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('lastVisitToMedic').valid 
+                && editForm.get('lastVisitToMedic').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="ui-g-12 ui-g-nopad">
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12"> 
+              <label>Motivo de la consulta:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Motivo de la consulta" 
+                formControlName="reasonForConsultation">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('reasonForConsultation').valid 
+                && editForm.get('reasonForConsultation').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
+          </div>
+
+          <div class="ui-g-6 ui-sm-12">
+            <div class="ui-g-12"> 
+              <label>Alergico a algun  medicamento:*</label>
+            </div>
+            <div class="ui-g-12">            
+              <input type="text" pInputText placeholder="Alergico a algun  medicamento" 
+                formControlName="allergies">   
+            </div>
+            <div class="ui-g-12" 
+              *ngIf="!editForm.get('allergies').valid 
+                && editForm.get('allergies').dirty">
+              <p-message severity="error" text="Campo obligatorio"></p-message>
+            </div>
+          </div>          
+        </div>
+
+        
         <div class="ui-g-12">
             <div class="ui-g-6 ui-sm-12">
               <button pButton 
