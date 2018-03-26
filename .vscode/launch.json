@@ -12,6 +12,7 @@
         }
         {
             "type": "chrome",
+            
             "request": "launch",
             "name": "ng serve",
             "url": "http://localhost:4200/#",

@@ -30,7 +30,7 @@ export class GendersService {
       .then(data => {
         let ret: any[] = [];
         data._embedded.genders.forEach(e => {
-          delete e['_links'];
+          //delete e['_links'];
           ret.push({
             "label": e.title,
             "value": e

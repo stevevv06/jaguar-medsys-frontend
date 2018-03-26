@@ -85,7 +85,7 @@ export class EditComponent implements OnInit, OnDestroy {
       this.editForm.patchValue({
         names: this.current.names,
         surnames: this.current.surnames,
-        //gender: this.current.gender,
+        gender: this.current.gender_links.gender.href,
         birthDate: new Date(this.current.birthDate),
         address: this.current.address,
         workplace: this.current.workplace,
@@ -104,7 +104,7 @@ export class EditComponent implements OnInit, OnDestroy {
     const formModel = this.editForm.value;
     this.current.names = formModel.names
     this.current.surnames = formModel.surnames
-    this.current.gender = formModel.gender
+    this.current.gender = formModel.gender._links.self.href;
     this.current.birthDate = formModel.birthDate
     this.current.address = formModel.address
     this.current.workplace = formModel.workplace
